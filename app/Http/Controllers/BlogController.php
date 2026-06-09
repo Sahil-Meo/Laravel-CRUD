@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class BlogController extends Controller
 {
@@ -154,5 +155,45 @@ class BlogController extends Controller
         }
 
         return view('blog.index', compact('posts', 'categories', 'active', 'search', 'featured'));
+    }
+
+    /**
+     * Show the create post form.
+     */
+    public function create()
+    {
+        $categories = ['Design', 'Development', 'Infrastructure', 'Culture'];
+
+        return view('blog.create', compact('categories'));
+    }
+
+    /**
+     * Handle the submitted post form.
+     */
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'title'       => ['required', 'string', 'min:5', 'max:150'],
+            'image_url'   => ['required', 'url', 'max:500'],
+            'category'    => ['required', 'in:Design,Development,Infrastructure,Culture'],
+            'description' => ['required', 'string', 'min:10', 'max:500'],
+        ], [
+            'title.required'       => 'A post title is required.',
+            'title.min'            => 'The title must be at least 5 characters.',
+            'image_url.required'   => 'An image URL is required.',
+            'image_url.url'        => 'Please enter a valid URL (including https://).',
+            'category.required'    => 'Please select a category.',
+            'category.in'          => 'Please choose a valid category.',
+            'description.required' => 'A short description is required.',
+            'description.min'      => 'The description must be at least 10 characters.',
+            'description.max'      => 'Keep the description under 500 characters.',
+        ]);
+
+        // In a real app we'd persist to the database here.
+        // For now we flash the data to session so the success page can display it.
+        Session::flash('post_created', $validated);
+
+        return redirect()->route('blog.index')
+                         ->with('success', 'Your post "' . $validated['title'] . '" was submitted successfully!');
     }
 }

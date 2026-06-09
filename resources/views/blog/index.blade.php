@@ -4,6 +4,28 @@
 
 @section('content')
 
+{{-- ===== SUCCESS FLASH ===== --}}
+@if (session('success'))
+<div x-data="{ show: true }" x-show="show" x-transition
+     class="fixed bottom-6 right-6 z-50 flex items-start gap-3 bg-white border border-green-200
+            rounded-2xl shadow-xl p-4 max-w-sm">
+    <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center shrink-0 mt-0.5">
+        <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+        </svg>
+    </div>
+    <div class="flex-1">
+        <p class="text-sm font-semibold text-gray-900">Post submitted!</p>
+        <p class="text-xs text-gray-500 mt-0.5">{{ session('success') }}</p>
+    </div>
+    <button @click="show = false" class="text-gray-400 hover:text-gray-600 transition-colors mt-0.5">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+    </button>
+</div>
+@endif
+
 {{-- ===== PAGE HERO ===== --}}
 <section class="pt-32 pb-16 bg-gradient-to-br from-slate-50 via-white to-indigo-50">
     <div class="max-w-7xl mx-auto px-6 text-center">
@@ -73,6 +95,16 @@
                 </a>
             @endif
         </form>
+
+        {{-- New Post Button --}}
+        <a href="{{ route('blog.create') }}"
+           class="shrink-0 inline-flex items-center gap-2 bg-indigo-600 text-white text-sm font-semibold
+                  px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors shadow-sm shadow-indigo-200">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+            </svg>
+            New Post
+        </a>
 
     </div>
 </section>
@@ -268,3 +300,7 @@
 </section>
 
 @endsection
+
+@push('scripts')
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+@endpush

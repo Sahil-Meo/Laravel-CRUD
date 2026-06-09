@@ -14,10 +14,15 @@
 
         {{-- Nav Links --}}
         <div class="hidden md:flex items-center gap-8">
-            <a href="#features" class="text-sm text-gray-600 hover:text-indigo-600 transition-colors">Features</a>
-            <a href="#work"     class="text-sm text-gray-600 hover:text-indigo-600 transition-colors">Our Work</a>
-            <a href="#team"     class="text-sm text-gray-600 hover:text-indigo-600 transition-colors">Team</a>
-            <a href="#pricing"  class="text-sm text-gray-600 hover:text-indigo-600 transition-colors">Pricing</a>
+            <a href="#features"              class="text-sm text-gray-600 hover:text-indigo-600 transition-colors">Features</a>
+            <a href="#work"                  class="text-sm text-gray-600 hover:text-indigo-600 transition-colors">Our Work</a>
+            <a href="#team"                  class="text-sm text-gray-600 hover:text-indigo-600 transition-colors">Team</a>
+            <a href="#pricing"               class="text-sm text-gray-600 hover:text-indigo-600 transition-colors">Pricing</a>
+            <a href="{{ route('blog.index') }}"
+               class="text-sm text-gray-600 hover:text-indigo-600 transition-colors
+                      {{ request()->routeIs('blog.*') ? 'text-indigo-600 font-semibold' : '' }}">
+               Blog
+            </a>
         </div>
 
         {{-- Auth Buttons --}}

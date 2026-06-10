@@ -257,7 +257,7 @@
                             {{-- Cover image --}}
                             <div class="relative h-44 bg-gradient-to-br from-slate-100 to-indigo-50 overflow-hidden">
                                 <template x-if="imageUrl && !imageError">
-                                    <img :src="imageUrl" @error="imageError = true"
+                                    <img :src="imageUrl" @@error="imageError = true"
                                          class="w-full h-full object-cover" alt="Cover preview">
                                 </template>
                                 <template x-if="!imageUrl || imageError">

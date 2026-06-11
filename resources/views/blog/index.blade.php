@@ -125,7 +125,7 @@
                 {{-- Image --}}
                 <div class="relative overflow-hidden h-72 md:h-auto">
                     <img
-                        src="{{ $featured['image'] }}"
+                        src="{{ $featured['image_url'] }}"
                         alt="{{ $featured['title'] }}"
                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     >
@@ -140,13 +140,13 @@
                         {{ $featured['title'] }}
                     </h2>
                     <p class="text-gray-500 text-base leading-relaxed mb-6">
-                        {{ $featured['excerpt'] }}
+                        {{ $featured['description'] }}
                     </p>
                     <div class="flex items-center gap-4 mb-8">
                         <img src="{{ $featured['avatar'] }}" class="w-9 h-9 rounded-full" alt="{{ $featured['author'] }}">
                         <div>
                             <p class="text-sm font-semibold text-gray-800">{{ $featured['author'] }}</p>
-                            <p class="text-xs text-gray-400">{{ $featured['date'] }} · {{ $featured['read'] }}</p>
+                            <p class="text-xs text-gray-400">{{ $featured['created_at'] }} · {{ $featured['read'] }}</p>
                         </div>
                     </div>
                     <a href="#"
@@ -181,7 +181,7 @@
                     {{-- Thumbnail --}}
                     <div class="relative overflow-hidden h-52">
                         <img
-                            src="{{ $post['image'] }}"
+                            src="{{ $post['image_url'] }}"
                             alt="{{ $post['title'] }}"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         >
@@ -205,7 +205,7 @@
                             {{ $post['title'] }}
                         </h3>
                         <p class="text-sm text-gray-500 leading-relaxed mb-5 line-clamp-2 flex-1">
-                            {{ $post['excerpt'] }}
+                            {{ $post['description'] }}
                         </p>
 
                         {{-- Meta --}}
@@ -214,7 +214,7 @@
                                 <img src="{{ $post['avatar'] }}" class="w-8 h-8 rounded-full" alt="{{ $post['author'] }}">
                                 <div>
                                     <p class="text-xs font-semibold text-gray-800 leading-tight">{{ $post['author'] }}</p>
-                                    <p class="text-xs text-gray-400">{{ $post['date'] }}</p>
+                                    <p class="text-xs text-gray-400">{{ $post['created_at'] }}</p>
                                 </div>
                             </div>
                             <span class="flex items-center gap-1 text-xs text-gray-400">

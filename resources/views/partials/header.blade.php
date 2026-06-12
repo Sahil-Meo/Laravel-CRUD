@@ -6,34 +6,35 @@
         <a href="{{ url('/') }}" class="flex items-center">
             <img
                 src="{{ asset('images/nav_logo.png') }}"
-                alt="DostTech"
+                alt="PostPulse"
                 class="h-10 w-auto object-contain"
             >
         </a>
 
         {{-- Nav Links --}}
         <div class="hidden md:flex items-center gap-8">
-            <a href="#features"
-               class="text-sm text-gray-600 hover:text-[#149696] transition-colors">Features</a>
-            <a href="#work"
-               class="text-sm text-gray-600 hover:text-[#149696] transition-colors">Our Work</a>
-            <a href="#team"
-               class="text-sm text-gray-600 hover:text-[#149696] transition-colors">Team</a>
-            <a href="#pricing"
-               class="text-sm text-gray-600 hover:text-[#149696] transition-colors">Pricing</a>
+            <a href="{{ url('/') }}"
+               class="text-sm transition-colors
+                      {{ request()->is('/') ? 'text-[#149696] font-semibold' : 'text-gray-600 hover:text-[#149696]' }}">
+               Home
+            </a>
             <a href="{{ route('featured.index') }}"
                class="text-sm transition-colors
-                      {{ request()->routeIs('featured.*')
-                            ? 'text-[#149696] font-semibold'
-                            : 'text-gray-600 hover:text-[#149696]' }}">
-               Featured
+                      {{ request()->routeIs('featured.*') ? 'text-[#149696] font-semibold' : 'text-gray-600 hover:text-[#149696]' }}">
+               Featured Jobs
             </a>
             <a href="{{ route('blog.index') }}"
                class="text-sm transition-colors
-                      {{ request()->routeIs('blog.*')
-                            ? 'text-[#149696] font-semibold'
-                            : 'text-gray-600 hover:text-[#149696]' }}">
-               Blog
+                      {{ request()->routeIs('blog.*') ? 'text-[#149696] font-semibold' : 'text-gray-600 hover:text-[#149696]' }}">
+               Career Blog
+            </a>
+            <a href="#how-it-works"
+               class="text-sm text-gray-600 hover:text-[#149696] transition-colors">
+               How It Works
+            </a>
+            <a href="#pricing"
+               class="text-sm text-gray-600 hover:text-[#149696] transition-colors">
+               Pricing
             </a>
         </div>
 
@@ -46,7 +47,7 @@
             <a href="#"
                class="text-sm font-semibold bg-[#149696] text-white px-4 py-2 rounded-lg
                       hover:bg-[#0f7a7a] transition-colors shadow-sm">
-               Get Started
+               Post a Job
             </a>
         </div>
 

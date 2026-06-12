@@ -27,10 +27,10 @@
 @endif
 
 {{-- ===== PAGE HERO ===== --}}
-<section class="pt-32 pb-16 bg-gradient-to-br from-slate-50 via-white to-indigo-50">
+<section class="pt-32 pb-16 bg-gradient-to-br from-slate-50 via-white to-teal-50/30">
     <div class="max-w-7xl mx-auto px-6 text-center">
-        <span class="inline-flex items-center gap-2 bg-indigo-50 text-indigo-700 text-xs font-semibold px-3 py-1.5 rounded-full mb-5">
-            <span class="w-1.5 h-1.5 bg-indigo-500 rounded-full"></span>
+        <span class="inline-flex items-center gap-2 bg-[#e6f7f7] text-[#0f7a7a] text-xs font-semibold px-3 py-1.5 rounded-full mb-5">
+            <span class="w-1.5 h-1.5 bg-[#e6f7f7]0 rounded-full"></span>
             Our Blog
         </span>
         <h1 class="text-5xl font-extrabold text-gray-900 mb-4">
@@ -53,8 +53,8 @@
                     href="{{ url('/blog') }}?category={{ urlencode($cat) }}{{ $search ? '&search='.urlencode($search) : '' }}"
                     class="px-4 py-1.5 rounded-full text-sm font-medium transition-colors
                         {{ $active === $cat
-                            ? 'bg-indigo-600 text-white shadow-sm shadow-indigo-200'
-                            : 'bg-gray-100 text-gray-600 hover:bg-indigo-50 hover:text-indigo-600' }}"
+                            ? 'bg-[#149696] text-white shadow-sm shadow-[#149696]/20'
+                            : 'bg-gray-100 text-gray-600 hover:bg-[#e6f7f7] hover:text-[#149696]' }}"
                 >
                     {{ $cat }}
                 </a>
@@ -77,12 +77,12 @@
                     value="{{ $search }}"
                     placeholder="Search posts…"
                     class="w-full pl-9 pr-4 py-2 text-sm bg-gray-50 border border-gray-200 rounded-lg
-                           focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400 transition"
+                           focus:outline-none focus:ring-2 focus:ring-[#149696]/40 focus:border-[#149696] transition"
                 >
             </div>
             <button type="submit"
-                    class="px-4 py-2 text-sm font-semibold bg-indigo-600 text-white rounded-lg
-                           hover:bg-indigo-700 transition-colors">
+                    class="px-4 py-2 text-sm font-semibold bg-[#149696] text-white rounded-lg
+                           hover:bg-[#0f7a7a] transition-colors">
                 Search
             </button>
             @if ($search)
@@ -98,8 +98,8 @@
 
         {{-- New Post Button --}}
         <a href="{{ route('blog.create') }}"
-           class="shrink-0 inline-flex items-center gap-2 bg-indigo-600 text-white text-sm font-semibold
-                  px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors shadow-sm shadow-indigo-200">
+           class="shrink-0 inline-flex items-center gap-2 bg-[#149696] text-white text-sm font-semibold
+                  px-4 py-2 rounded-lg hover:bg-[#0f7a7a] transition-colors shadow-sm shadow-[#149696]/20">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
             </svg>
@@ -115,7 +115,7 @@
         {{-- ===== FEATURED POST ===== --}}
         @if ($featured)
         <div class="mb-16">
-            <p class="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-5 flex items-center gap-2">
+            <p class="text-xs font-bold uppercase tracking-widest text-[#149696] mb-5 flex items-center gap-2">
                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
                 </svg>
@@ -130,13 +130,13 @@
                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     >
                     <div class="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent"></div>
-                    <span class="absolute top-4 left-4 bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+                    <span class="absolute top-4 left-4 bg-[#149696] text-white text-xs font-bold px-3 py-1 rounded-full">
                         {{ $featured['category'] }}
                     </span>
                 </div>
                 {{-- Content --}}
                 <div class="p-10 flex flex-col justify-center">
-                    <h2 class="text-3xl font-extrabold text-gray-900 leading-snug mb-4 group-hover:text-indigo-600 transition-colors">
+                    <h2 class="text-3xl font-extrabold text-gray-900 leading-snug mb-4 group-hover:text-[#149696] transition-colors">
                         {{ $featured['title'] }}
                     </h2>
                     <p class="text-gray-500 text-base leading-relaxed mb-6">
@@ -150,7 +150,7 @@
                         </div>
                     </div>
                     <a href="#"
-                       class="inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 hover:text-indigo-800 transition-colors">
+                       class="inline-flex items-center gap-2 text-sm font-semibold text-[#149696] hover:text-[#0f7a7a] transition-colors">
                         Read full article
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -169,14 +169,14 @@
                 <p class="text-sm text-gray-400">
                     Showing <span class="font-semibold text-gray-700">{{ count($posts) }}</span>
                     {{ count($posts) === 1 ? 'post' : 'posts' }}
-                    @if ($active !== 'All') in <span class="font-semibold text-indigo-600">{{ $active }}</span>@endif
-                    @if ($search) matching <span class="font-semibold text-indigo-600">"{{ $search }}"</span>@endif
+                    @if ($active !== 'All') in <span class="font-semibold text-[#149696]">{{ $active }}</span>@endif
+                    @if ($search) matching <span class="font-semibold text-[#149696]">"{{ $search }}"</span>@endif
                 </p>
             </div>
 
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach ($posts as $post)
-                <article class="group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-xl hover:border-indigo-100 transition-all duration-300 flex flex-col">
+                <article class="group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-xl hover:border-[#149696]/20 transition-all duration-300 flex flex-col">
 
                     {{-- Thumbnail --}}
                     <div class="relative overflow-hidden h-52">
@@ -201,7 +201,7 @@
 
                     {{-- Body --}}
                     <div class="p-6 flex flex-col flex-1">
-                        <h3 class="text-lg font-bold text-gray-900 leading-snug mb-3 group-hover:text-indigo-600 transition-colors line-clamp-2">
+                        <h3 class="text-lg font-bold text-gray-900 leading-snug mb-3 group-hover:text-[#149696] transition-colors line-clamp-2">
                             {{ $post['title'] }}
                         </h3>
                         <p class="text-sm text-gray-500 leading-relaxed mb-5 line-clamp-2 flex-1">
@@ -228,9 +228,9 @@
 
                     {{-- Read link --}}
                     <a href="#"
-                       class="mx-6 mb-6 flex items-center justify-center gap-2 text-sm font-semibold text-indigo-600
-                              border border-indigo-100 rounded-xl py-2.5 hover:bg-indigo-600 hover:text-white
-                              hover:border-indigo-600 transition-all">
+                       class="mx-6 mb-6 flex items-center justify-center gap-2 text-sm font-semibold text-[#149696]
+                              border border-[#149696]/20 rounded-xl py-2.5 hover:bg-[#149696] hover:text-white
+                              hover:border-[#149696] transition-all">
                         Read article
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -259,7 +259,7 @@
                     @endif
                 </p>
                 <a href="{{ url('/blog') }}"
-                   class="inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 hover:text-indigo-800 transition-colors">
+                   class="inline-flex items-center gap-2 text-sm font-semibold text-[#149696] hover:text-[#0f7a7a] transition-colors">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
                     </svg>
@@ -275,8 +275,8 @@
 {{-- ===== NEWSLETTER CTA ===== --}}
 <section class="py-20 bg-slate-50 border-t border-gray-100">
     <div class="max-w-2xl mx-auto px-6 text-center">
-        <div class="w-12 h-12 bg-indigo-100 rounded-2xl flex items-center justify-center mx-auto mb-5">
-            <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <div class="w-12 h-12 bg-[#cceeee] rounded-2xl flex items-center justify-center mx-auto mb-5">
+            <svg class="w-6 h-6 text-[#149696]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
             </svg>
         </div>
@@ -287,11 +287,11 @@
                 type="email"
                 placeholder="you@example.com"
                 class="flex-1 px-4 py-3 text-sm border border-gray-200 rounded-xl focus:outline-none
-                       focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400 transition"
+                       focus:ring-2 focus:ring-[#149696]/40 focus:border-[#149696] transition"
             >
             <button type="submit"
-                    class="px-6 py-3 bg-indigo-600 text-white text-sm font-semibold rounded-xl
-                           hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-100">
+                    class="px-6 py-3 bg-[#149696] text-white text-sm font-semibold rounded-xl
+                           hover:bg-[#0f7a7a] transition-colors shadow-lg shadow-teal-100">
                 Subscribe
             </button>
         </form>

@@ -4,20 +4,20 @@
 
 @section('content')
 
-<div class="min-h-screen bg-gradient-to-br from-slate-50 via-white to-indigo-50/40 pt-28 pb-20">
+<div class="min-h-screen bg-gradient-to-br from-slate-50 via-white to-teal-50/30 pt-28 pb-20">
     <div class="max-w-5xl mx-auto px-6">
 
         {{-- ===== PAGE HEADER ===== --}}
         <div class="mb-10">
             <a href="{{ route('blog.index') }}"
-               class="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-indigo-600 transition-colors mb-6">
+               class="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-[#149696] transition-colors mb-6">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
                 </svg>
                 Back to Blog
             </a>
             <div class="flex items-center gap-4">
-                <div class="w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-200">
+                <div class="w-12 h-12 bg-[#149696] rounded-2xl flex items-center justify-center shadow-lg shadow-[#149696]/20">
                     <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round"
                               d="M12 4v16m8-8H4"/>
@@ -79,7 +79,7 @@
                                     placeholder="e.g. How We Rebuilt Our API from the Ground Up"
                                     maxlength="150"
                                     class="w-full pl-10 pr-4 py-3 text-sm border rounded-xl transition
-                                           focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400
+                                           focus:outline-none focus:ring-2 focus:ring-[#149696]/40 focus:border-[#149696]
                                            @error('title') border-red-400 bg-red-50 @else border-gray-200 bg-gray-50 @enderror"
                                     value="{{ old('title') }}"
                                 >
@@ -114,12 +114,12 @@
                                     @input="imageError = false"
                                     placeholder="https://images.unsplash.com/photo-..."
                                     class="w-full pl-10 pr-4 py-3 text-sm border rounded-xl transition
-                                           focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400
+                                           focus:outline-none focus:ring-2 focus:ring-[#149696]/40 focus:border-[#149696]
                                            @error('image_url') border-red-400 bg-red-50 @else border-gray-200 bg-gray-50 @enderror"
                                     value="{{ old('image_url') }}"
                                 >
                             </div>
-                            <p class="mt-1.5 text-xs text-gray-400">Paste any public image URL. Try <a href="https://unsplash.com" target="_blank" class="text-indigo-500 hover:underline">Unsplash</a> for free photos.</p>
+                            <p class="mt-1.5 text-xs text-gray-400">Paste any public image URL. Try <a href="https://unsplash.com" target="_blank" class="text-[#149696] hover:underline">Unsplash</a> for free photos.</p>
                             @error('image_url')
                                 <p class="mt-2 flex items-center gap-1.5 text-xs text-red-600">
                                     <svg class="w-3.5 h-3.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
@@ -202,7 +202,7 @@
                                 maxlength="500"
                                 placeholder="Write a compelling 1–2 sentence summary of your post. This will appear on the blog card."
                                 class="w-full px-4 py-3 text-sm border rounded-xl resize-none transition
-                                       focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400
+                                       focus:outline-none focus:ring-2 focus:ring-[#149696]/40 focus:border-[#149696]
                                        @error('description') border-red-400 bg-red-50 @else border-gray-200 bg-gray-50 @enderror"
                             >{{ old('description') }}</textarea>
                             @error('description')
@@ -218,9 +218,9 @@
                         {{-- ---- Actions ---- --}}
                         <div class="flex items-center gap-3 pt-2">
                             <button type="submit"
-                                    class="flex-1 flex items-center justify-center gap-2 bg-indigo-600 text-white
-                                           text-sm font-semibold py-3 rounded-xl hover:bg-indigo-700
-                                           active:scale-95 transition-all shadow-lg shadow-indigo-200">
+                                    class="flex-1 flex items-center justify-center gap-2 bg-[#149696] text-white
+                                           text-sm font-semibold py-3 rounded-xl hover:bg-[#0f7a7a]
+                                           active:scale-95 transition-all shadow-lg shadow-[#149696]/20">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                 </svg>
@@ -255,7 +255,7 @@
                              :class="hasPreview ? 'opacity-100' : 'opacity-60'">
 
                             {{-- Cover image --}}
-                            <div class="relative h-44 bg-gradient-to-br from-slate-100 to-indigo-50 overflow-hidden">
+                            <div class="relative h-44 bg-gradient-to-br from-slate-100 to-teal-50/30 overflow-hidden">
                                 <template x-if="imageUrl && !imageError">
                                     <img :src="imageUrl" @@error="imageError = true"
                                          class="w-full h-full object-cover" alt="Cover preview">
@@ -286,8 +286,8 @@
                                 </p>
                                 <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-50">
                                     <div class="flex items-center gap-2">
-                                        <div class="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center">
-                                            <svg class="w-3.5 h-3.5 text-indigo-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                        <div class="w-6 h-6 rounded-full bg-[#cceeee] flex items-center justify-center">
+                                            <svg class="w-3.5 h-3.5 text-[#149696]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                                             </svg>
                                         </div>
@@ -310,8 +310,8 @@
                     </div>
 
                     {{-- Writing tips card --}}
-                    <div class="bg-indigo-50 rounded-2xl p-5 border border-indigo-100">
-                        <p class="text-xs font-bold uppercase tracking-widest text-indigo-500 mb-3">Writing Tips</p>
+                    <div class="bg-[#e6f7f7] rounded-2xl p-5 border border-[#149696]/20">
+                        <p class="text-xs font-bold uppercase tracking-widest text-[#149696] mb-3">Writing Tips</p>
                         <ul class="space-y-2.5">
                             @foreach ([
                                 'Keep titles under 80 characters for best SEO.',
@@ -319,8 +319,8 @@
                                 'Descriptions should hook the reader in 1–2 sentences.',
                                 'Pick the most specific category for discoverability.',
                             ] as $tip)
-                            <li class="flex items-start gap-2 text-xs text-indigo-700 leading-relaxed">
-                                <svg class="w-3.5 h-3.5 text-indigo-400 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <li class="flex items-start gap-2 text-xs text-[#0f7a7a] leading-relaxed">
+                                <svg class="w-3.5 h-3.5 text-[#149696] shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                 </svg>
                                 {{ $tip }}

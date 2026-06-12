@@ -5,27 +5,27 @@
 @section('content')
 
     {{-- ===== HERO ===== --}}
-    <section class="pt-32 pb-20 bg-gradient-to-br from-slate-50 via-white to-indigo-50 overflow-hidden">
+    <section class="pt-32 pb-20 bg-gradient-to-br from-slate-50 via-white to-teal-50/30 overflow-hidden">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div>
-                    <span class="inline-flex items-center gap-2 bg-indigo-50 text-indigo-700 text-xs font-semibold px-3 py-1.5 rounded-full mb-6">
-                        <span class="w-1.5 h-1.5 bg-indigo-500 rounded-full"></span>
+                    <span class="inline-flex items-center gap-2 bg-[#e6f7f7] text-[#0f7a7a] text-xs font-semibold px-3 py-1.5 rounded-full mb-6">
+                        <span class="w-1.5 h-1.5 bg-[#e6f7f7]0 rounded-full"></span>
                         Now in public beta
                     </span>
                     <h1 class="text-5xl font-extrabold text-gray-900 leading-tight mb-6">
                         Build something
-                        <span class="text-indigo-600">remarkable</span>
+                        <span class="text-[#149696]">remarkable</span>
                         with us
                     </h1>
                     <p class="text-lg text-gray-500 leading-relaxed mb-8">
-                        Luminary is the all-in-one platform that helps teams design, ship, and scale digital products faster than ever before. No compromises, just results.
+                        DostTech is the all-in-one platform that helps teams design, ship, and scale digital products faster than ever before. No compromises, just results.
                     </p>
                     <div class="flex flex-wrap gap-4">
-                        <a href="#" class="bg-indigo-600 text-white font-semibold px-6 py-3 rounded-xl hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-200">
+                        <a href="#" class="bg-[#149696] text-white font-semibold px-6 py-3 rounded-xl hover:bg-[#0f7a7a] transition-colors shadow-lg shadow-[#149696]/20">
                             Start for free
                         </a>
-                        <a href="#" class="flex items-center gap-2 text-gray-700 font-semibold px-6 py-3 rounded-xl border border-gray-200 hover:border-indigo-300 hover:text-indigo-600 transition-colors">
+                        <a href="#" class="flex items-center gap-2 text-gray-700 font-semibold px-6 py-3 rounded-xl border border-gray-200 hover:border-[#149696]/40 hover:text-[#149696] transition-colors">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/>
                             </svg>
@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <div class="relative">
-                    <div class="absolute -top-8 -right-8 w-72 h-72 bg-indigo-200 rounded-full opacity-30 blur-3xl"></div>
+                    <div class="absolute -top-8 -right-8 w-72 h-72 bg-teal-200 rounded-full opacity-30 blur-3xl"></div>
                     <div class="absolute -bottom-8 -left-8 w-72 h-72 bg-violet-200 rounded-full opacity-30 blur-3xl"></div>
                     <img
                         src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=700&auto=format&fit=crop&q=80"
@@ -85,15 +85,15 @@
     <section id="features" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center max-w-2xl mx-auto mb-16">
-                <span class="text-indigo-600 font-semibold text-sm uppercase tracking-widest">Features</span>
+                <span class="text-[#149696] font-semibold text-sm uppercase tracking-widest">Features</span>
                 <h2 class="text-4xl font-extrabold text-gray-900 mt-3 mb-4">Everything you need to succeed</h2>
                 <p class="text-gray-500 text-lg">From ideation to launch, our platform gives you the tools to move fast and build with confidence.</p>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
 
                 {{-- Feature 1 --}}
-                <div class="group p-8 rounded-2xl border border-gray-100 hover:border-indigo-200 hover:shadow-xl hover:shadow-indigo-50 transition-all">
-                    <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center mb-5 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                <div class="group p-8 rounded-2xl border border-gray-100 hover:border-[#149696]/30 hover:shadow-xl hover:shadow-teal-50 transition-all">
+                    <div class="w-12 h-12 bg-[#cceeee] text-[#149696] rounded-xl flex items-center justify-center mb-5 group-hover:bg-[#149696] group-hover:text-white transition-colors">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                         </svg>
@@ -103,7 +103,7 @@
                 </div>
 
                 {{-- Feature 2 --}}
-                <div class="group p-8 rounded-2xl border border-gray-100 hover:border-indigo-200 hover:shadow-xl hover:shadow-indigo-50 transition-all">
+                <div class="group p-8 rounded-2xl border border-gray-100 hover:border-[#149696]/30 hover:shadow-xl hover:shadow-teal-50 transition-all">
                     <div class="w-12 h-12 bg-violet-100 text-violet-600 rounded-xl flex items-center justify-center mb-5 group-hover:bg-violet-600 group-hover:text-white transition-colors">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
@@ -114,7 +114,7 @@
                 </div>
 
                 {{-- Feature 3 --}}
-                <div class="group p-8 rounded-2xl border border-gray-100 hover:border-indigo-200 hover:shadow-xl hover:shadow-indigo-50 transition-all">
+                <div class="group p-8 rounded-2xl border border-gray-100 hover:border-[#149696]/30 hover:shadow-xl hover:shadow-teal-50 transition-all">
                     <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center mb-5 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
@@ -132,7 +132,7 @@
     <section id="work" class="py-24 bg-slate-50">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center max-w-2xl mx-auto mb-16">
-                <span class="text-indigo-600 font-semibold text-sm uppercase tracking-widest">Our Work</span>
+                <span class="text-[#149696] font-semibold text-sm uppercase tracking-widest">Our Work</span>
                 <h2 class="text-4xl font-extrabold text-gray-900 mt-3 mb-4">Projects we're proud of</h2>
                 <p class="text-gray-500 text-lg">A glimpse into the kind of experiences we craft for our clients across the globe.</p>
             </div>
@@ -143,7 +143,7 @@
                          class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
                         <div>
-                            <span class="text-xs text-indigo-300 font-semibold uppercase tracking-widest">Analytics</span>
+                            <span class="text-xs text-teal-300 font-semibold uppercase tracking-widest">Analytics</span>
                             <h3 class="text-white font-bold text-xl mt-1">DataFlow Dashboard</h3>
                         </div>
                     </div>
@@ -189,7 +189,7 @@
     <section id="team" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center max-w-2xl mx-auto mb-16">
-                <span class="text-indigo-600 font-semibold text-sm uppercase tracking-widest">The Team</span>
+                <span class="text-[#149696] font-semibold text-sm uppercase tracking-widest">The Team</span>
                 <h2 class="text-4xl font-extrabold text-gray-900 mt-3 mb-4">Meet the people behind it</h2>
                 <p class="text-gray-500 text-lg">A small, passionate team obsessed with building great software.</p>
             </div>
@@ -207,7 +207,7 @@
                         <div class="absolute -bottom-1 -right-1 w-5 h-5 bg-green-400 rounded-full border-2 border-white"></div>
                     </div>
                     <h3 class="font-bold text-gray-900">{{ $member['name'] }}</h3>
-                    <p class="text-sm text-indigo-600 font-medium mt-0.5">{{ $member['role'] }}</p>
+                    <p class="text-sm text-[#149696] font-medium mt-0.5">{{ $member['role'] }}</p>
                 </div>
                 @endforeach
             </div>
@@ -215,15 +215,15 @@
     </section>
 
     {{-- ===== TESTIMONIALS ===== --}}
-    <section class="py-24 bg-indigo-600">
+    <section class="py-24 bg-[#149696]">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-extrabold text-white mb-4">What our customers say</h2>
-                <p class="text-indigo-200 text-lg">Don't take our word for it.</p>
+                <p class="text-teal-200 text-lg">Don't take our word for it.</p>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
                 @foreach ([
-                    ['quote' => 'Luminary completely transformed how our team works. We ship 3x faster with half the overhead.', 'author' => 'Alex T.',  'company' => 'Founder, Nexus Co.', 'img' => 'https://i.pravatar.cc/60?img=8'],
+                    ['quote' => 'DostTech completely transformed how our team works. We ship 3x faster with half the overhead.', 'author' => 'Alex T.',  'company' => 'Founder, Nexus Co.', 'img' => 'https://i.pravatar.cc/60?img=8'],
                     ['quote' => 'The analytics alone are worth the price. We finally understand our users and can act on it.',   'author' => 'Maria K.', 'company' => 'Product Lead, Orbi', 'img' => 'https://i.pravatar.cc/60?img=44'],
                     ['quote' => 'Switching was the best decision we made this year. The team support is genuinely outstanding.', 'author' => 'Tom H.',   'company' => 'CTO, BuildStack',    'img' => 'https://i.pravatar.cc/60?img=17'],
                 ] as $t)
@@ -240,7 +240,7 @@
                         <img src="{{ $t['img'] }}" class="w-10 h-10 rounded-full" alt="{{ $t['author'] }}">
                         <div>
                             <p class="text-white font-semibold text-sm">{{ $t['author'] }}</p>
-                            <p class="text-indigo-300 text-xs">{{ $t['company'] }}</p>
+                            <p class="text-teal-300 text-xs">{{ $t['company'] }}</p>
                         </div>
                     </div>
                 </div>
@@ -253,7 +253,7 @@
     <section id="pricing" class="py-24 bg-slate-50">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center max-w-2xl mx-auto mb-16">
-                <span class="text-indigo-600 font-semibold text-sm uppercase tracking-widest">Pricing</span>
+                <span class="text-[#149696] font-semibold text-sm uppercase tracking-widest">Pricing</span>
                 <h2 class="text-4xl font-extrabold text-gray-900 mt-3 mb-4">Simple, transparent pricing</h2>
                 <p class="text-gray-500 text-lg">No hidden fees. No surprises. Start free, upgrade when you're ready.</p>
             </div>
@@ -272,24 +272,24 @@
                         <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Basic analytics</li>
                         <li class="flex items-center gap-2 text-gray-300"><svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>Priority support</li>
                     </ul>
-                    <a href="#" class="block text-center border border-gray-300 text-gray-700 font-semibold py-2.5 rounded-xl hover:border-indigo-400 hover:text-indigo-600 transition-colors">Get started</a>
+                    <a href="#" class="block text-center border border-gray-300 text-gray-700 font-semibold py-2.5 rounded-xl hover:border-[#149696] hover:text-[#149696] transition-colors">Get started</a>
                 </div>
 
                 {{-- Pro (highlighted) --}}
-                <div class="bg-indigo-600 rounded-2xl p-8 shadow-2xl shadow-indigo-200 relative">
+                <div class="bg-[#149696] rounded-2xl p-8 shadow-2xl shadow-[#149696]/20 relative">
                     <span class="absolute -top-4 left-1/2 -translate-x-1/2 bg-yellow-400 text-yellow-900 text-xs font-bold px-4 py-1 rounded-full uppercase tracking-widest">Most Popular</span>
-                    <p class="text-sm font-semibold text-indigo-200 uppercase tracking-widest mb-2">Pro</p>
+                    <p class="text-sm font-semibold text-teal-200 uppercase tracking-widest mb-2">Pro</p>
                     <div class="flex items-end gap-1 mb-6">
                         <span class="text-4xl font-extrabold text-white">$29</span>
-                        <span class="text-indigo-300 mb-1">/mo</span>
+                        <span class="text-teal-300 mb-1">/mo</span>
                     </div>
-                    <ul class="space-y-3 mb-8 text-sm text-indigo-100">
+                    <ul class="space-y-3 mb-8 text-sm text-teal-100">
                         <li class="flex items-center gap-2"><svg class="w-4 h-4 text-white shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Unlimited projects</li>
                         <li class="flex items-center gap-2"><svg class="w-4 h-4 text-white shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>50 GB storage</li>
                         <li class="flex items-center gap-2"><svg class="w-4 h-4 text-white shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Advanced analytics</li>
                         <li class="flex items-center gap-2"><svg class="w-4 h-4 text-white shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Priority support</li>
                     </ul>
-                    <a href="#" class="block text-center bg-white text-indigo-700 font-semibold py-2.5 rounded-xl hover:bg-indigo-50 transition-colors">Get started</a>
+                    <a href="#" class="block text-center bg-white text-[#0f7a7a] font-semibold py-2.5 rounded-xl hover:bg-[#e6f7f7] transition-colors">Get started</a>
                 </div>
 
                 {{-- Enterprise --}}
@@ -305,7 +305,7 @@
                         <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>SSO & audit logs</li>
                         <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Dedicated support</li>
                     </ul>
-                    <a href="#" class="block text-center border border-gray-300 text-gray-700 font-semibold py-2.5 rounded-xl hover:border-indigo-400 hover:text-indigo-600 transition-colors">Contact sales</a>
+                    <a href="#" class="block text-center border border-gray-300 text-gray-700 font-semibold py-2.5 rounded-xl hover:border-[#149696] hover:text-[#149696] transition-colors">Contact sales</a>
                 </div>
 
             </div>
@@ -321,11 +321,11 @@
                     alt="CTA background"
                     class="absolute inset-0 w-full h-full object-cover"
                 >
-                <div class="absolute inset-0 bg-indigo-900/80"></div>
+                <div class="absolute inset-0 bg-[#0a4f4f]/80"></div>
                 <div class="relative py-20 px-8">
                     <h2 class="text-4xl font-extrabold text-white mb-4">Ready to get started?</h2>
-                    <p class="text-indigo-200 text-lg mb-8 max-w-xl mx-auto">Join thousands of teams already using Luminary to build faster, smarter, and with more confidence.</p>
-                    <a href="#" class="inline-block bg-white text-indigo-700 font-bold px-8 py-4 rounded-xl hover:bg-indigo-50 transition-colors shadow-lg">
+                    <p class="text-teal-200 text-lg mb-8 max-w-xl mx-auto">Join thousands of teams already using DostTech to build faster, smarter, and with more confidence.</p>
+                    <a href="#" class="inline-block bg-white text-[#0f7a7a] font-bold px-8 py-4 rounded-xl hover:bg-[#e6f7f7] transition-colors shadow-lg">
                         Start your free trial
                     </a>
                 </div>

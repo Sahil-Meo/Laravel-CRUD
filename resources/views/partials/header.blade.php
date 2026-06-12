@@ -21,6 +21,13 @@
                class="text-sm text-gray-600 hover:text-[#149696] transition-colors">Team</a>
             <a href="#pricing"
                class="text-sm text-gray-600 hover:text-[#149696] transition-colors">Pricing</a>
+            <a href="{{ route('featured.index') }}"
+               class="text-sm transition-colors
+                      {{ request()->routeIs('featured.*')
+                            ? 'text-[#149696] font-semibold'
+                            : 'text-gray-600 hover:text-[#149696]' }}">
+               Featured
+            </a>
             <a href="{{ route('blog.index') }}"
                class="text-sm transition-colors
                       {{ request()->routeIs('blog.*')

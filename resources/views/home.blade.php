@@ -301,40 +301,206 @@
     </div>
 </section>
 
-{{-- ===== TESTIMONIALS ===== --}}
-<section class="py-24 bg-[#149696]">
+{{-- ===== TESTIMONIALS SLIDER ===== --}}
+<section class="py-24 bg-[#149696] overflow-hidden">
     <div class="max-w-7xl mx-auto px-6">
-        <div class="text-center mb-16">
+        <div class="text-center mb-14">
             <h2 class="text-4xl font-extrabold text-white mb-4">Stories from our community</h2>
             <p class="text-teal-200 text-lg">Real people, real results.</p>
         </div>
-        <div class="grid md:grid-cols-3 gap-8">
-            @foreach ([
-                ['quote' => 'I landed my dream role at a startup within 3 weeks of creating my PostPulse profile. The job matching is genuinely impressive.', 'author' => 'Amira S.', 'company' => 'UX Designer · Hired via PostPulse', 'img' => 'https://i.pravatar.cc/60?img=47'],
-                ['quote' => 'As an employer, PostPulse gave us our best hire yet. We posted the role on a Friday and had strong candidates by Monday.', 'author' => 'James R.', 'company' => 'CTO, BuildStack', 'img' => 'https://i.pravatar.cc/60?img=12'],
-                ['quote' => 'After six months of searching elsewhere, I found three great opportunities on PostPulse within my first week. Wish I had found it sooner.', 'author' => 'Priya M.', 'company' => 'Product Manager · Hired via PostPulse', 'img' => 'https://i.pravatar.cc/60?img=32'],
-            ] as $t)
-            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
-                <div class="flex gap-1 mb-5">
-                    @for ($i = 0; $i < 5; $i++)
+    </div>
+
+    {{-- Slider viewport — clips the track --}}
+    <div class="relative select-none" id="storySlider">
+
+        {{-- Fade edges --}}
+        <div class="pointer-events-none absolute left-0 top-0 h-full w-24 z-10
+                    bg-gradient-to-r from-[#149696] to-transparent"></div>
+        <div class="pointer-events-none absolute right-0 top-0 h-full w-24 z-10
+                    bg-gradient-to-l from-[#149696] to-transparent"></div>
+
+        {{-- Scrollable track --}}
+        <div id="storyTrack"
+             class="flex gap-6 cursor-grab active:cursor-grabbing px-12"
+             style="will-change:transform;">
+
+            @php
+            $stories = [
+                ['quote' => 'I landed my dream role at a startup within 3 weeks of creating my PostPulse profile. The job matching is genuinely impressive.', 'author' => 'Amira S.', 'role' => 'UX Designer · Hired via PostPulse', 'img' => 'https://i.pravatar.cc/60?img=47', 'stars' => 5],
+                ['quote' => 'As an employer, PostPulse gave us our best hire yet. We posted the role on a Friday and had strong candidates by Monday morning.', 'author' => 'James R.', 'role' => 'CTO, BuildStack', 'img' => 'https://i.pravatar.cc/60?img=12', 'stars' => 5],
+                ['quote' => 'After six months of searching elsewhere, I found three great opportunities on PostPulse within my first week. Wish I had found it sooner.', 'author' => 'Priya M.', 'role' => 'Product Manager · Hired via PostPulse', 'img' => 'https://i.pravatar.cc/60?img=32', 'stars' => 5],
+                ['quote' => 'PostPulse matched me with a role I never would have found on my own. The AI suggestions were spot on — better than hours of manual searching.', 'author' => 'Carlos V.', 'role' => 'Data Engineer · Hired via PostPulse', 'img' => 'https://i.pravatar.cc/60?img=15', 'stars' => 5],
+                ['quote' => 'We filled four senior positions in under a month using PostPulse. The quality of applicants was head and shoulders above other job boards we have tried.', 'author' => 'Sophie L.', 'role' => 'Head of Talent, Nexus Co.', 'img' => 'https://i.pravatar.cc/60?img=44', 'stars' => 5],
+                ['quote' => 'I was nervous about switching industries, but PostPulse showed me roles that valued my transferable skills. I got hired as a Product Analyst within 5 weeks.', 'author' => 'Marcus T.', 'role' => 'Product Analyst · Career changer', 'img' => 'https://i.pravatar.cc/60?img=17', 'stars' => 5],
+                ['quote' => 'The one-click apply and profile import saved me hours. I applied to twelve jobs in an afternoon and heard back from six of them.', 'author' => 'Leila O.', 'role' => 'Frontend Developer · Hired via PostPulse', 'img' => 'https://i.pravatar.cc/60?img=25', 'stars' => 5],
+                ['quote' => 'Our hiring velocity doubled after switching to PostPulse. The featured listing placement put us in front of exactly the kind of candidates we needed.', 'author' => 'Ravi K.', 'role' => 'VP Engineering, Orbi', 'img' => 'https://i.pravatar.cc/60?img=33', 'stars' => 5],
+            ];
+            @endphp
+
+            {{-- Real cards --}}
+            @foreach ($stories as $t)
+            <div class="story-card flex-none w-80 md:w-96 bg-white/10 backdrop-blur-sm
+                        rounded-2xl p-7 border border-white/20 flex flex-col">
+                {{-- Stars --}}
+                <div class="flex gap-1 mb-4">
+                    @for ($i = 0; $i < $t['stars']; $i++)
                     <svg class="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
                     </svg>
                     @endfor
                 </div>
-                <p class="text-white text-sm leading-relaxed mb-6">"{{ $t['quote'] }}"</p>
+                <p class="text-white text-sm leading-relaxed flex-1 mb-6">"{{ $t['quote'] }}"</p>
                 <div class="flex items-center gap-3">
-                    <img src="{{ $t['img'] }}" class="w-10 h-10 rounded-full" alt="{{ $t['author'] }}">
+                    <img src="{{ $t['img'] }}" class="w-10 h-10 rounded-full shrink-0" alt="{{ $t['author'] }}">
                     <div>
                         <p class="text-white font-semibold text-sm">{{ $t['author'] }}</p>
-                        <p class="text-teal-300 text-xs">{{ $t['company'] }}</p>
+                        <p class="text-teal-300 text-xs">{{ $t['role'] }}</p>
                     </div>
                 </div>
             </div>
             @endforeach
-        </div>
-    </div>
+
+        </div>{{-- /track --}}
+    </div>{{-- /viewport --}}
 </section>
+
+@push('scripts')
+<script>
+(function () {
+    'use strict';
+
+    const track   = document.getElementById('storyTrack');
+    if (!track) return;
+
+    /* ── 1. Clone all real cards to create the seamless loop ─────────── */
+    const origCards = Array.from(track.querySelectorAll('.story-card'));
+    origCards.forEach(card => track.appendChild(card.cloneNode(true)));
+
+    /* ── 2. State ─────────────────────────────────────────────────────── */
+    let x          = 0;          // current translateX (px)
+    let raf        = null;
+    let speed      = 0.6;        // auto-scroll px per frame (desktop)
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragLastX  = 0;
+    let velocity   = 0;
+    let autoScroll = true;
+    let pauseTimer = null;
+
+    /* ── 3. Measure one "set" width (original cards + gaps) ──────────── */
+    function oneSetWidth() {
+        // gap-6 = 1.5rem = 24px
+        const gap = 24;
+        return origCards.reduce((acc, c) => acc + c.offsetWidth + gap, 0);
+    }
+
+    /* ── 4. Apply position ───────────────────────────────────────────── */
+    function setX(val) {
+        x = val;
+        track.style.transform = `translateX(${x}px)`;
+    }
+
+    /* ── 5. Animation loop ───────────────────────────────────────────── */
+    function loop() {
+        if (autoScroll) {
+            x -= speed;
+        }
+        // Seamless reset: when we've scrolled one full set, jump back
+        const setW = oneSetWidth();
+        if (x <= -setW) x += setW;
+        if (x > 0)      x -= setW;
+
+        track.style.transform = `translateX(${x}px)`;
+        raf = requestAnimationFrame(loop);
+    }
+
+    raf = requestAnimationFrame(loop);
+
+    /* ── 6. Pause auto-scroll temporarily after drag ─────────────────── */
+    function resumeAfterDelay() {
+        clearTimeout(pauseTimer);
+        pauseTimer = setTimeout(() => { autoScroll = true; }, 1800);
+    }
+
+    /* ── 7. Pointer (mouse + touch unified) drag ─────────────────────── */
+    function onDragStart(clientX) {
+        isDragging = true;
+        autoScroll = false;
+        dragStartX = clientX;
+        dragLastX  = clientX;
+        velocity   = 0;
+        clearTimeout(pauseTimer);
+        track.style.transition = 'none';
+    }
+
+    function onDragMove(clientX) {
+        if (!isDragging) return;
+        const delta = clientX - dragLastX;
+        velocity    = delta;
+        dragLastX   = clientX;
+        x += delta;
+        // keep in valid range for the seamless loop
+        const setW = oneSetWidth();
+        if (x <= -setW) x += setW;
+        if (x > 0)      x -= setW;
+        track.style.transform = `translateX(${x}px)`;
+    }
+
+    function onDragEnd() {
+        if (!isDragging) return;
+        isDragging = false;
+        // Momentum — coast to a stop
+        const momentum = velocity;
+        let decay = momentum;
+        const coast = () => {
+            if (Math.abs(decay) < 0.3) {
+                resumeAfterDelay();
+                return;
+            }
+            decay *= 0.92;
+            x += decay;
+            const setW = oneSetWidth();
+            if (x <= -setW) x += setW;
+            if (x > 0)      x -= setW;
+            track.style.transform = `translateX(${x}px)`;
+            requestAnimationFrame(coast);
+        };
+        requestAnimationFrame(coast);
+    }
+
+    /* ── Mouse events ────────────────────────────────────────────────── */
+    track.addEventListener('mousedown', e => {
+        e.preventDefault();
+        onDragStart(e.clientX);
+    });
+    window.addEventListener('mousemove', e => onDragMove(e.clientX));
+    window.addEventListener('mouseup',   ()  => onDragEnd());
+
+    /* ── Touch events ────────────────────────────────────────────────── */
+    track.addEventListener('touchstart', e => {
+        onDragStart(e.touches[0].clientX);
+    }, { passive: true });
+
+    track.addEventListener('touchmove', e => {
+        onDragMove(e.touches[0].clientX);
+    }, { passive: true });
+
+    track.addEventListener('touchend',   ()  => onDragEnd());
+
+    /* ── Pause on hover (desktop) ────────────────────────────────────── */
+    track.addEventListener('mouseenter', () => { if (!isDragging) autoScroll = false; });
+    track.addEventListener('mouseleave', () => { if (!isDragging) autoScroll = true;  });
+
+    /* ── Slow down on small screens ──────────────────────────────────── */
+    function adjustSpeed() {
+        speed = window.innerWidth < 640 ? 0.4 : 0.6;
+    }
+    adjustSpeed();
+    window.addEventListener('resize', adjustSpeed);
+
+})();
+</script>
+@endpush
 
 {{-- ===== PRICING ===== --}}
 <section id="pricing" class="py-24 bg-slate-50">

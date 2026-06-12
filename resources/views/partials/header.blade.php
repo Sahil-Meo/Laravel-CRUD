@@ -44,10 +44,11 @@
                class="text-sm font-medium text-gray-700 hover:text-[#149696] transition-colors">
                Log in
             </a>
-            <a href="#"
+            <a href="{{ route('profile.create') }}"
                class="text-sm font-semibold bg-[#149696] text-white px-4 py-2 rounded-lg
-                      hover:bg-[#0f7a7a] transition-colors shadow-sm">
-               Post a Job
+                      hover:bg-[#0f7a7a] transition-colors shadow-sm
+                      {{ request()->routeIs('profile.*') ? 'ring-2 ring-[#149696]/40' : '' }}">
+               Create Profile
             </a>
         </div>
 

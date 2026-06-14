@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\FeaturedController;
@@ -9,6 +10,9 @@ use App\Http\Controllers\ProfileController;
 Route::get('/', function () {
     return view('home');
 })->name('home');
+
+// About
+Route::get('/about', [AboutController::class, 'index'])->name('about');
 
 // Auth
 Route::get('/login',           [AuthController::class, 'showLogin'])->name('auth.login');

@@ -26,9 +26,10 @@
                       {{ request()->routeIs('blog.*') ? 'text-[#149696] font-semibold' : 'text-gray-600 hover:text-[#149696]' }}">
                Career Blog
             </a>
-            <a href="#how-it-works"
-               class="text-sm text-gray-600 hover:text-[#149696] transition-colors">
-               How It Works
+            <a href="{{ route('about') }}"
+               class="text-sm transition-colors
+                      {{ request()->routeIs('about') ? 'text-[#149696] font-semibold' : 'text-gray-600 hover:text-[#149696]' }}">
+               About Us
             </a>
             <a href="#pricing"
                class="text-sm text-gray-600 hover:text-[#149696] transition-colors">
@@ -101,10 +102,10 @@
                       {{ request()->routeIs('blog.*') ? 'bg-[#e6f7f7] text-[#149696] font-semibold' : 'text-gray-700 hover:bg-gray-50 hover:text-[#149696]' }}">
                Career Blog
             </a>
-            <a href="#how-it-works"
-               class="px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#149696]
-                      rounded-xl transition-colors">
-               How It Works
+            <a href="{{ route('about') }}"
+               class="px-3 py-2.5 text-sm rounded-xl transition-colors
+                      {{ request()->routeIs('about') ? 'bg-[#e6f7f7] text-[#149696] font-semibold' : 'text-gray-700 hover:bg-gray-50 hover:text-[#149696]' }}">
+               About Us
             </a>
             <a href="#pricing"
                class="px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#149696]

@@ -23,8 +23,8 @@
             <div>
                 <h4 class="text-white font-semibold mb-4">For Employers</h4>
                 <ul class="space-y-2 text-sm">
-                    <li><a href="#" class="hover:text-[#149696] transition-colors">Post a Job</a></li>
-                    <li><a href="#" class="hover:text-[#149696] transition-colors">Browse Candidates</a></li>
+                    <li><a href="{{ route('profile.create') }}" class="hover:text-[#149696] transition-colors">Post a Job</a></li>
+                    <li><a href="{{ route('candidates.index') }}" class="hover:text-[#149696] transition-colors">Browse Candidates</a></li>
                     <li><a href="#" class="hover:text-[#149696] transition-colors">Pricing Plans</a></li>
                     <li><a href="#" class="hover:text-[#149696] transition-colors">Employer Dashboard</a></li>
                 </ul>
@@ -35,7 +35,7 @@
                 <h4 class="text-white font-semibold mb-4">For Job Seekers</h4>
                 <ul class="space-y-2 text-sm">
                     <li><a href="{{ route('featured.index') }}" class="hover:text-[#149696] transition-colors">Browse Jobs</a></li>
-                    <li><a href="#" class="hover:text-[#149696] transition-colors">Create Profile</a></li>
+                    <li><a href="{{ route('profile.create') }}" class="hover:text-[#149696] transition-colors">Create Profile</a></li>
                     <li><a href="{{ route('blog.index') }}" class="hover:text-[#149696] transition-colors">Career Blog</a></li>
                     <li><a href="#" class="hover:text-[#149696] transition-colors">Salary Insights</a></li>
                 </ul>

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FeaturedController;
 use App\Http\Controllers\ProfileController;
@@ -14,6 +15,9 @@ Route::get('/', function () {
 
 // About
 Route::get('/about',   [AboutController::class, 'index'])->name('about');
+
+// Candidates
+Route::get('/candidates', [CandidateController::class, 'index'])->name('candidates.index');
 
 // Contact
 Route::get('/contact',  [ContactController::class, 'index'])->name('contact');

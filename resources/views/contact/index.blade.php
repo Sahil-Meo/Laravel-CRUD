@@ -345,7 +345,7 @@
                 </div>
 
                 {{-- Response time badge --}}
-                <div class="flex items-center gap-3 bg-[#e6f7f7] rounded-2xl px-5 py-4
+                <!-- <div class="flex items-center gap-3 bg-[#e6f7f7] rounded-2xl px-5 py-4
                             border border-[#149696]/20">
                     <span class="flex h-3 w-3 shrink-0">
                         <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full
@@ -356,7 +356,7 @@
                         Average response time: <span class="text-[#149696]">under 4 hours</span>
                         during business hours
                     </p>
-                </div>
+                </div> -->
 
             </div>
 
@@ -365,11 +365,12 @@
 </section>
 
 {{-- ═══════════════════════════════════════════════════════════════════════
-     3. FAQ STRIP
+     3. FAQ ACCORDION
      ═══════════════════════════════════════════════════════════════════════ --}}
 <section class="py-20 bg-slate-50 border-t border-gray-100">
-    <div class="max-w-7xl mx-auto px-6">
+    <div class="max-w-3xl mx-auto px-6">
 
+        {{-- Header --}}
         <div class="text-center mb-12">
             <span class="text-[#149696] font-semibold text-sm uppercase tracking-widest">
                 Quick Answers
@@ -387,37 +388,89 @@
             </p>
         </div>
 
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
-            @foreach ([
+        {{-- Accordion --}}
+        <div class="space-y-3" id="faq-accordion">
+
+            @php
+            $faqs = [
                 ['q' => 'How do I post a job on PostPulse?',
-                 'a' => 'Create a free employer profile, choose a plan, then click "Post a Job". Your listing goes live within minutes.'],
+                 'a' => 'Create a free employer profile, choose a plan, then click "Post a Job". Your listing goes live within minutes and is immediately visible to thousands of active job seekers.'],
                 ['q' => 'Is PostPulse free for job seekers?',
-                 'a' => 'Yes — creating a profile, browsing jobs, and applying are all completely free for candidates.'],
+                 'a' => 'Yes — creating a profile, browsing all job listings, and applying to any role are completely free for candidates. We never charge job seekers.'],
                 ['q' => 'How long does it take to hear back from employers?',
-                 'a' => 'It varies, but our featured listings average a first contact within 48 hours of applying.'],
+                 'a' => 'It varies by employer, but our featured listings average a first contact within 48 hours of applying. You\'ll receive an email notification the moment an employer responds.'],
                 ['q' => 'Can I edit or remove my job listing?',
-                 'a' => 'Absolutely. Employers can edit, pause, or close any listing from their employer dashboard at any time.'],
+                 'a' => 'Absolutely. Employers can edit, pause, or permanently close any listing at any time directly from their employer dashboard. Changes go live instantly.'],
                 ['q' => 'What payment methods do you accept?',
-                 'a' => 'We accept all major credit and debit cards, PayPal, and bank transfers for annual plans.'],
+                 'a' => 'We accept all major credit and debit cards (Visa, Mastercard, Amex), PayPal, and bank transfers for annual enterprise plans. All payments are secured by Stripe.'],
                 ['q' => 'How do I report a suspicious listing?',
-                 'a' => 'Click the "Report" flag on any job listing. Our moderation team reviews every report within 2 hours.'],
-            ] as $faq)
-            <div class="bg-white rounded-2xl p-6 border border-gray-100
-                        hover:border-[#149696]/20 hover:shadow-md transition-all group">
-                <div class="flex items-start gap-3">
-                    <div class="w-7 h-7 rounded-lg bg-[#e6f7f7] flex items-center justify-center
-                                shrink-0 mt-0.5 group-hover:bg-[#149696] transition-colors">
-                        <span class="text-[#149696] group-hover:text-white text-xs font-black
-                                     transition-colors">?</span>
+                 'a' => 'Click the "Report" flag on any job listing page. Our trust and safety team reviews every report within 2 hours and will remove any listing that violates our policies.'],
+                ['q' => 'Can I apply to multiple jobs at once?',
+                 'a' => 'Yes. With a PostPulse profile you can apply to as many roles as you like with a single click. Your profile, CV, and preferences are sent automatically each time.'],
+                ['q' => 'How does the AI job matching work?',
+                 'a' => 'Our matching engine analyses your skills, experience, location preferences, and past applications to surface the most relevant roles. The more you use PostPulse, the more accurate it becomes.'],
+            ];
+            @endphp
+
+            @foreach ($faqs as $i => $faq)
+            <div class="faq-item bg-white rounded-2xl border border-gray-100 overflow-hidden
+                        transition-all duration-200 hover:border-[#149696]/20 hover:shadow-sm"
+                 data-faq-item>
+
+                {{-- Question button --}}
+                <button type="button"
+                        class="faq-trigger w-full flex items-center justify-between gap-4
+                               px-6 py-5 text-left group"
+                        data-faq-trigger
+                        aria-expanded="false"
+                        aria-controls="faq-panel-{{ $i }}">
+
+                    <div class="flex items-center gap-4">
+                        {{-- Number badge --}}
+                        <span class="faq-badge shrink-0 w-7 h-7 rounded-lg bg-[#e6f7f7]
+                                     text-[#149696] text-xs font-black flex items-center
+                                     justify-center transition-colors duration-200">
+                            {{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}
+                        </span>
+                        <span class="text-sm font-bold text-gray-900 group-hover:text-[#149696]
+                                     transition-colors duration-200">
+                            {{ $faq['q'] }}
+                        </span>
                     </div>
-                    <div>
-                        <p class="text-sm font-bold text-gray-900 mb-2">{{ $faq['q'] }}</p>
-                        <p class="text-sm text-gray-500 leading-relaxed">{{ $faq['a'] }}</p>
+
+                    {{-- Chevron icon --}}
+                    <span class="faq-icon shrink-0 w-8 h-8 rounded-full border border-gray-200
+                                 flex items-center justify-center transition-all duration-300
+                                 group-hover:border-[#149696]/40 group-hover:bg-[#e6f7f7]">
+                        <svg class="w-4 h-4 text-gray-400 transition-transform duration-300
+                                    group-hover:text-[#149696] faq-chevron"
+                             fill="none" stroke="currentColor" stroke-width="2.5"
+                             viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </span>
+
+                </button>
+
+                {{-- Answer panel --}}
+                <div id="faq-panel-{{ $i }}"
+                     class="faq-panel overflow-hidden"
+                     style="max-height: 0; transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1);"
+                     data-faq-panel>
+                    <div class="px-6 pb-5 pt-1 flex gap-4">
+                        {{-- Indent spacer aligns answer with question text --}}
+                        <div class="w-7 shrink-0"></div>
+                        <p class="text-sm text-gray-500 leading-relaxed">
+                            {{ $faq['a'] }}
+                        </p>
                     </div>
                 </div>
+
             </div>
             @endforeach
-        </div>
+
+        </div>{{-- /accordion --}}
 
     </div>
 </section>
@@ -530,4 +583,5 @@
 
 @push('scripts')
 <script src="{{ asset('js/components/contact-form.js') }}" defer></script>
+<script src="{{ asset('js/components/faq-accordion.js') }}" defer></script>
 @endpush

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FeaturedController;
 use App\Http\Controllers\ProfileController;
 
@@ -12,7 +13,11 @@ Route::get('/', function () {
 })->name('home');
 
 // About
-Route::get('/about', [AboutController::class, 'index'])->name('about');
+Route::get('/about',   [AboutController::class, 'index'])->name('about');
+
+// Contact
+Route::get('/contact',  [ContactController::class, 'index'])->name('contact');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 // Auth
 Route::get('/login',           [AuthController::class, 'showLogin'])->name('auth.login');

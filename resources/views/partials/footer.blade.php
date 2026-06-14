@@ -48,7 +48,7 @@
                     <li><a href="{{ route('about') }}" class="hover:text-[#149696] transition-colors">About PostPulse</a></li>
                     <li><a href="#" class="hover:text-[#149696] transition-colors">Privacy Policy</a></li>
                     <li><a href="#" class="hover:text-[#149696] transition-colors">Terms of Service</a></li>
-                    <li><a href="#" class="hover:text-[#149696] transition-colors">Contact Us</a></li>
+                    <li><a href="{{ route('contact') }}" class="hover:text-[#149696] transition-colors">Contact Us</a></li>
                 </ul>
             </div>
 

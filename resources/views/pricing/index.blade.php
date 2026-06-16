@@ -417,19 +417,35 @@
 {{-- ═══════════════════════════════════════════════════════════════════════
      6. BOTTOM CTA
      ═══════════════════════════════════════════════════════════════════════ --}}
-<section class="py-20 bg-[#149696]">
-    <div class="max-w-4xl mx-auto px-6 text-center">
+<section class="relative py-20 overflow-hidden">
+
+    {{-- Background video --}}
+    <video
+        autoplay muted loop playsinline
+        class="absolute inset-0 w-full h-full object-cover"
+        aria-hidden="true">
+        <source
+            src="https://cdn.coverr.co/videos/coverr-working-in-a-modern-office-6037/1080p.mp4"
+            type="video/mp4">
+    </video>
+
+    {{-- Dark overlay so text stays readable --}}
+    <div class="absolute inset-0 bg-gray-950/70"></div>
+
+    {{-- Content --}}
+    <div class="relative max-w-4xl mx-auto px-6 text-center">
         <h2 class="text-4xl font-extrabold text-white mb-4 leading-tight">
             Ready to find your next great hire?
         </h2>
-        <p class="text-teal-200 text-lg mb-10 max-w-xl mx-auto">
+        <p class="text-gray-300 text-lg mb-10 max-w-xl mx-auto">
             Join 12,000+ employers and 500,000+ professionals already on PostPulse.
             Start free — no credit card required.
         </p>
         <div class="flex flex-wrap justify-center gap-4">
             <a href="{{ route('profile.create') }}"
-               class="inline-flex items-center gap-2 bg-white text-[#0f7a7a] font-bold
-                      px-8 py-4 rounded-xl hover:bg-[#e6f7f7] transition-colors shadow-lg text-sm">
+               class="inline-flex items-center gap-2 bg-[#149696] text-white font-bold
+                      px-8 py-4 rounded-xl hover:bg-[#0f7a7a] transition-colors
+                      shadow-lg shadow-[#149696]/30 text-sm">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
                      viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -438,12 +454,13 @@
                 Create Profile Free
             </a>
             <a href="{{ route('contact') }}"
-               class="inline-flex items-center gap-2 border-2 border-white/30 text-white
+               class="inline-flex items-center gap-2 border-2 border-white/40 text-white
                       font-bold px-8 py-4 rounded-xl hover:bg-white/10 transition-colors text-sm">
                 Talk to Sales
             </a>
         </div>
     </div>
+
 </section>
 
 @endsection

@@ -42,6 +42,7 @@ Route::post('/create-profile/employer',[ProfileController::class, 'storeEmployer
 Route::get('/featured', [FeaturedController::class, 'index'])->name('featured.index');
 
 // Blog routes
-Route::get('/blog',        [BlogController::class, 'index'])->name('blog.index');
-Route::get('/blog/create', [BlogController::class, 'create'])->name('blog.create');
-Route::post('/blog',       [BlogController::class, 'store'])->name('blog.store');
+Route::get('/blog',           [BlogController::class, 'index'])->name('blog.index');
+Route::get('/blog/create',    [BlogController::class, 'create'])->name('blog.create');
+Route::post('/blog',          [BlogController::class, 'store'])->name('blog.store');
+Route::get('/blog/{id}',      [BlogController::class, 'show'])->name('blog.show');

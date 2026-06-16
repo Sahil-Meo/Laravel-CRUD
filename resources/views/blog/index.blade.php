@@ -149,7 +149,7 @@
                             <p class="text-xs text-gray-400">{{ $featured['created_at'] }} · {{ $featured['read'] }}</p>
                         </div>
                     </div>
-                    <a href="#"
+                    <a href="{{ route('blog.show', $featured['id']) }}"
                        class="inline-flex items-center gap-2 text-sm font-semibold text-[#149696] hover:text-[#0f7a7a] transition-colors">
                         Read full article
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -227,7 +227,7 @@
                     </div>
 
                     {{-- Read link --}}
-                    <a href="#"
+                    <a href="{{ route('blog.show', $post['id']) }}"
                        class="mx-6 mb-6 flex items-center justify-center gap-2 text-sm font-semibold text-[#149696]
                               border border-[#149696]/20 rounded-xl py-2.5 hover:bg-[#149696] hover:text-white
                               hover:border-[#149696] transition-all">

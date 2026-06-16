@@ -25,7 +25,7 @@
                 <ul class="space-y-2 text-sm">
                     <li><a href="{{ route('profile.create') }}" class="hover:text-[#149696] transition-colors">Post a Job</a></li>
                     <li><a href="{{ route('candidates.index') }}" class="hover:text-[#149696] transition-colors">Browse Candidates</a></li>
-                    <li><a href="#" class="hover:text-[#149696] transition-colors">Pricing Plans</a></li>
+                    <li><a href="{{ route('pricing') }}" class="hover:text-[#149696] transition-colors">Pricing Plans</a></li>
                     <li><a href="#" class="hover:text-[#149696] transition-colors">Employer Dashboard</a></li>
                 </ul>
             </div>

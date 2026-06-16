@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\PricingController;
 use App\Http\Controllers\FeaturedController;
 use App\Http\Controllers\ProfileController;
 
@@ -15,6 +16,9 @@ Route::get('/', function () {
 
 // About
 Route::get('/about',   [AboutController::class, 'index'])->name('about');
+
+// Pricing
+Route::get('/pricing', [PricingController::class, 'index'])->name('pricing');
 
 // Candidates
 Route::get('/candidates', [CandidateController::class, 'index'])->name('candidates.index');

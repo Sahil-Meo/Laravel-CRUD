@@ -311,81 +311,16 @@
     title="Stories from our community"
     subtitle="Real people, real results."
     :stories="[
-        ['quote' => 'I landed my dream role at a startup within 3 weeks of creating my PostPulse profile. The job matching is genuinely impressive.',                                            'author' => 'Amira S.',  'role' => 'UX Designer · Hired via PostPulse',       'img' => 'https://i.pravatar.cc/60?img=47', 'stars' => 5],
+        ['quote' => 'I landed my dream role at a startup within 3 weeks of creating my PostPulse profile. The job matching is genuinely impressive.',                                            'author' => 'Amira S.',  'role' => 'UX Designer ï¿½ Hired via PostPulse',       'img' => 'https://i.pravatar.cc/60?img=47', 'stars' => 5],
         ['quote' => 'As an employer, PostPulse gave us our best hire yet. We posted the role on a Friday and had strong candidates by Monday morning.',                                         'author' => 'James R.',  'role' => 'CTO, BuildStack',                         'img' => 'https://i.pravatar.cc/60?img=12', 'stars' => 5],
-        ['quote' => 'After six months of searching elsewhere, I found three great opportunities on PostPulse within my first week. Wish I had found it sooner.',                               'author' => 'Priya M.',  'role' => 'Product Manager · Hired via PostPulse',   'img' => 'https://i.pravatar.cc/60?img=32', 'stars' => 5],
-        ['quote' => 'PostPulse matched me with a role I never would have found on my own. The AI suggestions were spot on — better than hours of manual searching.',                          'author' => 'Carlos V.', 'role' => 'Data Engineer · Hired via PostPulse',      'img' => 'https://i.pravatar.cc/60?img=15', 'stars' => 5],
+        ['quote' => 'After six months of searching elsewhere, I found three great opportunities on PostPulse within my first week. Wish I had found it sooner.',                               'author' => 'Priya M.',  'role' => 'Product Manager ï¿½ Hired via PostPulse',   'img' => 'https://i.pravatar.cc/60?img=32', 'stars' => 5],
+        ['quote' => 'PostPulse matched me with a role I never would have found on my own. The AI suggestions were spot on ï¿½ better than hours of manual searching.',                          'author' => 'Carlos V.', 'role' => 'Data Engineer ï¿½ Hired via PostPulse',      'img' => 'https://i.pravatar.cc/60?img=15', 'stars' => 5],
         ['quote' => 'We filled four senior positions in under a month using PostPulse. The quality of applicants was head and shoulders above other job boards we have tried.',               'author' => 'Sophie L.', 'role' => 'Head of Talent, Nexus Co.',               'img' => 'https://i.pravatar.cc/60?img=44', 'stars' => 5],
-        ['quote' => 'I was nervous about switching industries, but PostPulse showed me roles that valued my transferable skills. I got hired as a Product Analyst within 5 weeks.',          'author' => 'Marcus T.', 'role' => 'Product Analyst · Career changer',         'img' => 'https://i.pravatar.cc/60?img=17', 'stars' => 5],
-        ['quote' => 'The one-click apply and profile import saved me hours. I applied to twelve jobs in an afternoon and heard back from six of them.',                                       'author' => 'Leila O.',  'role' => 'Frontend Developer · Hired via PostPulse', 'img' => 'https://i.pravatar.cc/60?img=25', 'stars' => 5],
+        ['quote' => 'I was nervous about switching industries, but PostPulse showed me roles that valued my transferable skills. I got hired as a Product Analyst within 5 weeks.',          'author' => 'Marcus T.', 'role' => 'Product Analyst ï¿½ Career changer',         'img' => 'https://i.pravatar.cc/60?img=17', 'stars' => 5],
+        ['quote' => 'The one-click apply and profile import saved me hours. I applied to twelve jobs in an afternoon and heard back from six of them.',                                       'author' => 'Leila O.',  'role' => 'Frontend Developer ï¿½ Hired via PostPulse', 'img' => 'https://i.pravatar.cc/60?img=25', 'stars' => 5],
         ['quote' => 'Our hiring velocity doubled after switching to PostPulse. The featured listing placement put us in front of exactly the kind of candidates we needed.',                  'author' => 'Ravi K.',   'role' => 'VP Engineering, Orbi',                    'img' => 'https://i.pravatar.cc/60?img=33', 'stars' => 5],
     ]"
 />
-{{-- ===== PRICING ===== --}}
-<section id="pricing" class="py-24 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="text-center max-w-2xl mx-auto mb-16">
-            <span class="text-[#149696] font-semibold text-sm uppercase tracking-widest">Pricing</span>
-            <h2 class="text-4xl font-extrabold text-gray-900 mt-3 mb-4">Plans for every team size</h2>
-            <p class="text-gray-500 text-lg">Start for free. Upgrade as you grow. No long-term contracts.</p>
-        </div>
-        <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-
-            {{-- Free --}}
-            <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
-                <p class="text-sm font-semibold text-gray-500 uppercase tracking-widest mb-2">Free</p>
-                <div class="flex items-end gap-1 mb-1">
-                    <span class="text-4xl font-extrabold text-gray-900">$0</span>
-                    <span class="text-gray-500 mb-1">/mo</span>
-                </div>
-                <p class="text-xs text-gray-400 mb-6">For job seekers â€” always free</p>
-                <ul class="space-y-3 mb-8 text-sm text-gray-600">
-                    <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Unlimited job search</li>
-                    <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Apply to 5 jobs/month</li>
-                    <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Basic profile</li>
-                    <li class="flex items-center gap-2 text-gray-300"><svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>Job alerts</li>
-                </ul>
-                <a href="#" class="block text-center border border-gray-300 text-gray-700 font-semibold py-2.5 rounded-xl hover:border-[#149696] hover:text-[#149696] transition-colors">Get started free</a>
-            </div>
-
-            {{-- Pro (highlighted) --}}
-            <div class="bg-[#149696] rounded-2xl p-8 shadow-2xl shadow-[#149696]/20 relative">
-                <span class="absolute -top-4 left-1/2 -translate-x-1/2 bg-yellow-400 text-yellow-900 text-xs font-bold px-4 py-1 rounded-full uppercase tracking-widest">Most Popular</span>
-                <p class="text-sm font-semibold text-teal-200 uppercase tracking-widest mb-2">Employer Pro</p>
-                <div class="flex items-end gap-1 mb-1">
-                    <span class="text-4xl font-extrabold text-white">$49</span>
-                    <span class="text-teal-300 mb-1">/mo</span>
-                </div>
-                <p class="text-xs text-teal-200 mb-6">Per active job posting</p>
-                <ul class="space-y-3 mb-8 text-sm text-teal-100">
-                    <li class="flex items-center gap-2"><svg class="w-4 h-4 text-white shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Featured placement</li>
-                    <li class="flex items-center gap-2"><svg class="w-4 h-4 text-white shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Unlimited applicants</li>
-                    <li class="flex items-center gap-2"><svg class="w-4 h-4 text-white shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>AI candidate matching</li>
-                    <li class="flex items-center gap-2"><svg class="w-4 h-4 text-white shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Applicant tracking</li>
-                </ul>
-                <a href="#" class="block text-center bg-white text-[#0f7a7a] font-semibold py-2.5 rounded-xl hover:bg-[#e6f7f7] transition-colors">Post a Job</a>
-            </div>
-
-            {{-- Enterprise --}}
-            <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
-                <p class="text-sm font-semibold text-gray-500 uppercase tracking-widest mb-2">Enterprise</p>
-                <div class="flex items-end gap-1 mb-1">
-                    <span class="text-4xl font-extrabold text-gray-900">Custom</span>
-                </div>
-                <p class="text-xs text-gray-400 mb-6">Volume hiring & staffing agencies</p>
-                <ul class="space-y-3 mb-8 text-sm text-gray-600">
-                    <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Everything in Pro</li>
-                    <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Unlimited job posts</li>
-                    <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Dedicated recruiter tools</li>
-                    <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Priority support & SLA</li>
-                </ul>
-                <a href="#" class="block text-center border border-gray-300 text-gray-700 font-semibold py-2.5 rounded-xl hover:border-[#149696] hover:text-[#149696] transition-colors">Contact Sales</a>
-            </div>
-
-        </div>
-    </div>
-</section>
-
 {{-- ===== CTA BANNER ===== --}}
 <section class="py-20 bg-white">
     <div class="max-w-4xl mx-auto px-6 text-center">
@@ -402,7 +337,7 @@
                     Join 12,000+ employers who trust PostPulse to find and hire exceptional talent every day.
                 </p>
                 <div class="flex flex-wrap justify-center gap-4">
-                    <a href="#" class="inline-block bg-white text-[#0f7a7a] font-bold px-8 py-4 rounded-xl hover:bg-[#e6f7f7] transition-colors shadow-lg">
+                    <a href="{{ route('profile.create') }}" class="inline-block bg-white text-[#0f7a7a] font-bold px-8 py-4 rounded-xl hover:bg-[#e6f7f7] transition-colors shadow-lg">
                         Post a Job Free
                     </a>
                     <a href="{{ route('featured.index') }}" class="inline-block border-2 border-white/40 text-white font-bold px-8 py-4 rounded-xl hover:bg-white/10 transition-colors">

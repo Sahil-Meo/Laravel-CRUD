@@ -28,15 +28,22 @@
             no lock-in, no surprises.
         </p>
 
-        {{-- Billing toggle (visual only — real toggle needs JS/backend) --}}
-        <div class="inline-flex items-center gap-3 bg-white/10 border border-white/15
-                    rounded-full px-2 py-1.5 text-sm">
-            <button class="px-5 py-1.5 rounded-full bg-white text-gray-900 font-semibold
-                           text-sm transition-all">
+        {{-- Billing toggle --}}
+        <div id="billing-toggle"
+             class="inline-flex items-center bg-white/10 border border-white/15
+                    rounded-full px-1.5 py-1.5 gap-1">
+            <button id="btn-monthly"
+                    data-billing="monthly"
+                    class="billing-btn px-6 py-2 rounded-full text-sm font-semibold
+                           transition-all duration-200
+                           bg-white text-gray-900 shadow-sm">
                 Monthly
             </button>
-            <button class="px-5 py-1.5 rounded-full text-gray-300 font-medium
-                           text-sm hover:text-white transition-colors">
+            <button id="btn-annual"
+                    data-billing="annual"
+                    class="billing-btn px-6 py-2 rounded-full text-sm font-medium
+                           transition-all duration-200
+                           text-gray-300 hover:text-white">
                 Annual
                 <span class="ml-1.5 text-xs bg-green-500/20 text-green-400 font-bold
                              px-2 py-0.5 rounded-full border border-green-500/30">
@@ -51,99 +58,141 @@
      2. PRICING CARDS
      ═══════════════════════════════════════════════════════════════════════ --}}
 <section class="py-20 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-6">
+    <div class="max-w-5xl mx-auto px-6">
 
-        <div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-6">
+        <div class="grid md:grid-cols-3 gap-8">
+
             @foreach ($plans as $plan)
 
-            <div class="relative flex flex-col rounded-2xl overflow-hidden
-                        transition-all duration-300 hover:-translate-y-1
-                        {{ $plan['highlight']
-                            ? 'bg-[#149696] shadow-2xl shadow-[#149696]/30 ring-2 ring-[#149696]'
-                            : 'bg-white border border-gray-200 shadow-sm hover:shadow-lg' }}">
+            {{-- Free --}}
+            @if (!$plan['highlight'])
+            <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm
+                        hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
 
-                {{-- Most popular badge --}}
-                @if ($plan['badge'])
-                <div class="absolute -top-px left-0 right-0 h-1
-                            bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-400"></div>
-                <span class="absolute top-3 right-3 bg-yellow-400 text-yellow-900
-                             text-xs font-black px-2.5 py-1 rounded-full uppercase tracking-widest">
+                <p class="text-sm font-semibold text-gray-500 uppercase tracking-widest mb-2">
+                    {{ $plan['name'] }}
+                </p>
+
+                <div class="flex items-end gap-1 mb-1">
+                    <span class="text-4xl font-extrabold text-gray-900 plan-price"
+                          data-monthly="{{ $plan['price_monthly'] }}"
+                          data-annual="{{ $plan['price_annual'] }}">
+                        {{ $plan['price_monthly'] }}
+                    </span>
+                    @if ($plan['period'])
+                    <span class="text-gray-500 mb-1">{{ $plan['period'] }}</span>
+                    @endif
+                </div>
+
+                <p class="text-xs text-gray-400 mb-6 plan-note"
+                   data-monthly="{{ $plan['note_monthly'] }}"
+                   data-annual="{{ $plan['note_annual'] }}">
+                    {{ $plan['note_monthly'] }}
+                </p>
+
+                <ul class="space-y-3 mb-8 text-sm text-gray-600">
+                    @foreach ($plan['features'] as $f)
+                    <li class="flex items-center gap-2
+                               {{ $f['included'] ? '' : 'text-gray-300' }}">
+                        @if ($f['included'])
+                        <svg class="w-4 h-4 text-green-500 shrink-0" fill="none"
+                             stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M5 13l4 4L19 7"/>
+                        </svg>
+                        @else
+                        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor"
+                             stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                        @endif
+                        {{ $f['text'] }}
+                    </li>
+                    @endforeach
+                </ul>
+
+                <a href="{{ $plan['cta_href'] }}"
+                   class="block text-center border border-gray-300 text-gray-700 font-semibold
+                          py-2.5 rounded-xl hover:border-[#149696] hover:text-[#149696]
+                          transition-colors">
+                    {{ $plan['cta_label'] }}
+                </a>
+
+            </div>
+
+            {{-- Highlighted (Pro) --}}
+            @else
+            <div class="bg-[#149696] rounded-2xl p-8 shadow-2xl shadow-[#149696]/20 relative
+                        hover:-translate-y-1 transition-all duration-300">
+
+                <span class="absolute -top-4 left-1/2 -translate-x-1/2 bg-yellow-400
+                             text-yellow-900 text-xs font-bold px-4 py-1 rounded-full
+                             uppercase tracking-widest">
                     {{ $plan['badge'] }}
                 </span>
-                @endif
 
-                <div class="p-7 flex flex-col flex-1">
+                <p class="text-sm font-semibold text-teal-200 uppercase tracking-widest mb-2">
+                    {{ $plan['name'] }}
+                </p>
 
-                    {{-- Plan name + audience --}}
-                    <div class="mb-6">
-                        <p class="text-xs font-bold uppercase tracking-widest mb-1
-                                  {{ $plan['highlight'] ? 'text-teal-200' : 'text-gray-400' }}">
-                            {{ $plan['name'] }}
-                        </p>
-                        <p class="text-xs {{ $plan['highlight'] ? 'text-teal-300' : 'text-gray-400' }}">
-                            {{ $plan['audience'] }}
-                        </p>
-                    </div>
-
-                    {{-- Price --}}
-                    <div class="mb-7">
-                        <div class="flex items-end gap-1">
-                            <span class="text-5xl font-extrabold
-                                         {{ $plan['highlight'] ? 'text-white' : 'text-gray-900' }}">
-                                {{ $plan['price'] }}
-                            </span>
-                            @if ($plan['period'])
-                            <span class="mb-2 text-sm
-                                         {{ $plan['highlight'] ? 'text-teal-300' : 'text-gray-400' }}">
-                                {{ $plan['period'] }}
-                            </span>
-                            @endif
-                        </div>
-                    </div>
-
-                    {{-- Features --}}
-                    <ul class="space-y-3 mb-8 flex-1">
-                        @foreach ($plan['features'] as $feature)
-                        <li class="flex items-start gap-2.5 text-sm
-                                   {{ $feature['included']
-                                       ? ($plan['highlight'] ? 'text-teal-100' : 'text-gray-700')
-                                       : ($plan['highlight'] ? 'text-teal-300/40' : 'text-gray-300') }}">
-                            @if ($feature['included'])
-                            <svg class="w-4 h-4 shrink-0 mt-0.5
-                                        {{ $plan['highlight'] ? 'text-white' : 'text-[#149696]' }}"
-                                 fill="none" stroke="currentColor" stroke-width="2.5"
-                                 viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M5 13l4 4L19 7"/>
-                            </svg>
-                            @else
-                            <svg class="w-4 h-4 shrink-0 mt-0.5" fill="none" stroke="currentColor"
-                                 stroke-width="2" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M6 18L18 6M6 6l12 12"/>
-                            </svg>
-                            @endif
-                            {{ $feature['text'] }}
-                        </li>
-                        @endforeach
-                    </ul>
-
-                    {{-- CTA --}}
-                    <a href="{{ $plan['cta_href'] }}"
-                       class="block text-center font-semibold py-3 rounded-xl transition-all text-sm
-                              {{ $plan['highlight']
-                                  ? 'bg-white text-[#0f7a7a] hover:bg-[#e6f7f7]'
-                                  : 'bg-[#149696] text-white hover:bg-[#0f7a7a] shadow-sm shadow-[#149696]/20' }}">
-                        {{ $plan['cta_label'] }}
-                    </a>
-
+                <div class="flex items-end gap-1 mb-1">
+                    <span class="text-4xl font-extrabold text-white plan-price"
+                          data-monthly="{{ $plan['price_monthly'] }}"
+                          data-annual="{{ $plan['price_annual'] }}">
+                        {{ $plan['price_monthly'] }}
+                    </span>
+                    @if ($plan['period'])
+                    <span class="text-teal-300 mb-1">{{ $plan['period'] }}</span>
+                    @endif
                 </div>
+
+                <p class="text-xs text-teal-200 mb-6 plan-note"
+                   data-monthly="{{ $plan['note_monthly'] }}"
+                   data-annual="{{ $plan['note_annual'] }}">
+                    {{ $plan['note_monthly'] }}
+                </p>
+
+                <ul class="space-y-3 mb-8 text-sm text-teal-100">
+                    @foreach ($plan['features'] as $f)
+                    <li class="flex items-center gap-2">
+                        <svg class="w-4 h-4 text-white shrink-0" fill="none"
+                             stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M5 13l4 4L19 7"/>
+                        </svg>
+                        {{ $f['text'] }}
+                    </li>
+                    @endforeach
+                </ul>
+
+                <a href="{{ $plan['cta_href'] }}"
+                   class="block text-center bg-white text-[#0f7a7a] font-semibold py-2.5
+                          rounded-xl hover:bg-[#e6f7f7] transition-colors">
+                    {{ $plan['cta_label'] }}
+                </a>
+
             </div>
+            @endif
+
             @endforeach
+
+        </div>
+
+        {{-- Annual saving callout (shown only when annual is active) --}}
+        <div id="annual-saving"
+             class="hidden text-center mt-6 text-sm text-[#149696] font-medium
+                    flex items-center justify-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
+                 viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+            </svg>
+            You're saving 20% with annual billing — that's $120 off per year on Employer Pro.
         </div>
 
         {{-- Money-back note --}}
-        <p class="text-center text-sm text-gray-400 mt-8 flex items-center justify-center gap-2">
+        <p class="text-center text-sm text-gray-400 mt-6 flex items-center justify-center gap-2">
             <svg class="w-4 h-4 text-[#149696]" fill="none" stroke="currentColor"
                  stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -206,30 +255,30 @@
                         'Dedicated support',
                     ];
                     $tableData = [
-                        // Free,  ProSeeker, EmployerPro, Enterprise
-                        'Job search & browsing'     => [true,  true,  true,  true ],
-                        'Profile creation'           => [true,  true,  true,  true ],
-                        'Job applications'           => ['5/mo','∞',   false, false],
-                        'Job alert emails'           => [false, true,  false, true ],
-                        'AI job matching'            => [false, true,  true,  true ],
-                        'Resume / CV upload'         => [false, true,  false, true ],
-                        'Browse candidate profiles'  => [false, false, true,  true ],
-                        'Post job listings'          => [false, false, true,  true ],
-                        'Featured placement'         => [false, false, true,  true ],
-                        'Applicant tracking'         => [false, false, true,  true ],
-                        'Analytics & reporting'      => [false, false, false, true ],
-                        'API access'                 => [false, false, false, true ],
-                        'Dedicated support'          => [false, false, false, true ],
+                        // Free, EmployerPro, Enterprise
+                        'Job search & browsing'     => [true,  true,  true ],
+                        'Profile creation'           => [true,  true,  true ],
+                        'Job applications'           => ['5/mo', false, false],
+                        'Job alert emails'           => [false, false, true ],
+                        'AI job matching'            => [false, true,  true ],
+                        'Resume / CV upload'         => [false, false, true ],
+                        'Browse candidate profiles'  => [false, true,  true ],
+                        'Post job listings'          => [false, true,  true ],
+                        'Featured placement'         => [false, true,  true ],
+                        'Applicant tracking'         => [false, true,  true ],
+                        'Analytics & reporting'      => [false, false, true ],
+                        'API access'                 => [false, false, true ],
+                        'Dedicated support'          => [false, false, true ],
                     ];
                     @endphp
                     @foreach ($tableRows as $row)
                     <tr class="hover:bg-gray-50/60 transition-colors">
                         <td class="px-6 py-3.5 font-medium text-gray-800">{{ $row }}</td>
                         @foreach ($tableData[$row] as $colIdx => $val)
-                        <td class="px-4 py-3.5 text-center {{ $colIdx === 2 ? 'bg-[#e6f7f7]/30' : '' }}">
+                        <td class="px-4 py-3.5 text-center {{ $colIdx === 1 ? 'bg-[#e6f7f7]/30' : '' }}">
                             @if ($val === true)
                             <span class="inline-flex items-center justify-center w-6 h-6 rounded-full
-                                         {{ $colIdx === 2 ? 'bg-[#149696] text-white' : 'bg-green-100 text-green-600' }}">
+                                         {{ $colIdx === 1 ? 'bg-[#149696] text-white' : 'bg-green-100 text-green-600' }}">
                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor"
                                      stroke-width="2.5" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -401,4 +450,5 @@
 
 @push('scripts')
 <script src="{{ asset('js/components/faq-accordion.js') }}" defer></script>
+<script src="{{ asset('js/components/pricing-toggle.js') }}" defer></script>
 @endpush

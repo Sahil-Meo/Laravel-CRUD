@@ -52,4 +52,3 @@ Route::get('/blog/{id}',      [BlogController::class, 'show'])->name('blog.show'
 Route::get('/salary-insights', [SalaryController::class, 'index'])->name('salary.index');
 
 
-// TESTING ROUTES ARE THERE

@@ -37,7 +37,7 @@
                     <li><a href="{{ route('featured.index') }}" class="hover:text-[#149696] transition-colors">Browse Jobs</a></li>
                     <li><a href="{{ route('profile.create') }}" class="hover:text-[#149696] transition-colors">Create Profile</a></li>
                     <li><a href="{{ route('blog.index') }}" class="hover:text-[#149696] transition-colors">Career Blog</a></li>
-                    <li><a href="#" class="hover:text-[#149696] transition-colors">Salary Insights</a></li>
+                    <li><a href="{{ route('salary.index') }}" class="hover:text-[#149696] transition-colors">Salary Insights</a></li>
                 </ul>
             </div>
 

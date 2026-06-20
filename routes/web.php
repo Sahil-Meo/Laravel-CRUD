@@ -9,6 +9,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PricingController;
 use App\Http\Controllers\FeaturedController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SalaryController;
 
 Route::get('/', function () {
     return view('home');
@@ -46,6 +47,9 @@ Route::get('/blog',           [BlogController::class, 'index'])->name('blog.inde
 Route::get('/blog/create',    [BlogController::class, 'create'])->name('blog.create');
 Route::post('/blog',          [BlogController::class, 'store'])->name('blog.store');
 Route::get('/blog/{id}',      [BlogController::class, 'show'])->name('blog.show');
+
+// Salary Insights
+Route::get('/salary-insights', [SalaryController::class, 'index'])->name('salary.index');
 
 
 // TESTING ROUTES ARE THERE

@@ -11,6 +11,13 @@
     </div>
 </section>
 
+<section class="py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-6 space-y-20">
+        <x-salary.by-industry :byIndustry="$byIndustry" />
+        <x-salary.by-location :byLocation="$byLocation" />
+    </div>
+</section>
+
 <x-salary.cta />
 
 @endsection

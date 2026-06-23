@@ -31,6 +31,14 @@
     </div>
 </section>
 
+<section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+        <x-salary.featured-reports :reports="$reports" />
+    </div>
+</section>
+
+
+
 <x-salary.cta />
 
 @endsection

@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
+// Legal
+Route::get('/privacy-policy', fn () => view('legal.privacy-policy'))->name('privacy');
+Route::get('/terms-of-service', fn () => view('legal.terms-of-service'))->name('terms');
+
 // About
 Route::get('/about',   [AboutController::class, 'index'])->name('about');
 

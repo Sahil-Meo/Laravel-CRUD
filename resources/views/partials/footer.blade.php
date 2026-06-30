@@ -46,8 +46,8 @@
                 <h4 class="text-white font-semibold mb-4">Company</h4>
                 <ul class="space-y-2 text-sm">
                     <li><a href="{{ route('about') }}" class="hover:text-[#149696] transition-colors">About PostPulse</a></li>
-                    <li><a href="#" class="hover:text-[#149696] transition-colors">Privacy Policy</a></li>
-                    <li><a href="#" class="hover:text-[#149696] transition-colors">Terms of Service</a></li>
+                    <li><a href="{{ route('privacy') }}" class="hover:text-[#149696] transition-colors">Privacy Policy</a></li>
+                    <li><a href="{{ route('terms') }}" class="hover:text-[#149696] transition-colors">Terms of Service</a></li>
                     <li><a href="{{ route('contact') }}" class="hover:text-[#149696] transition-colors">Contact Us</a></li>
                 </ul>
             </div>

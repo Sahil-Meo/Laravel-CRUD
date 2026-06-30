@@ -1,0 +1,604 @@
+================================================================
+  PostPulse — Backend Architecture Design
+  Generated: July 2026
+================================================================
+
+
+================================================================
+  1. DATABASE DESIGN
+================================================================
+
+----------------------------------------------------------------
+  CORE TABLES
+----------------------------------------------------------------
+
+users
+-----
+  id
+  name
+  email
+  password
+  role                  (enum: seeker | employer | admin)
+  email_verified_at
+  remember_token
+  created_at
+  updated_at
+
+
+seeker_profiles
+---------------
+  (One-to-one with users where role = seeker)
+
+  id
+  user_id               (FK -> users.id)
+  avatar                (nullable, file path)
+  title                 (professional title, e.g. "Senior UX Designer")
+  phone                 (nullable)
+  location              (e.g. "London, UK")
+  remote_preference     (enum: office | hybrid | remote | any)
+  summary               (short bio, max 1000 chars)
+  portfolio_url         (nullable)
+  linkedin_url          (nullable)
+  resume_path           (nullable, stored file path)
+  created_at
+  updated_at
+
+
+employer_profiles
+-----------------
+  (One-to-one with users where role = employer)
+
+  id
+  user_id               (FK -> users.id)
+  company_name
+  company_logo          (nullable, file path)
+  contact_name
+  business_email
+  phone                 (nullable)
+  company_website       (nullable)
+  industry
+  company_size          (e.g. "11-50", "201-500")
+  company_location
+  company_description   (max 2000 chars)
+  linkedin_url          (nullable)
+  twitter_url           (nullable)
+  created_at
+  updated_at
+
+
+skills
+------
+  id
+  name                  (e.g. "React", "Python", "UX Research")
+  slug                  (e.g. "react", "python")
+  created_at
+  updated_at
+
+
+seeker_skills  (PIVOT — many-to-many)
+-------------
+  id
+  seeker_profile_id     (FK -> seeker_profiles.id)
+  skill_id              (FK -> skills.id)
+
+
+work_experiences
+----------------
+  (One-to-many with seeker_profiles)
+
+  id
+  seeker_profile_id     (FK -> seeker_profiles.id)
+  job_title
+  company
+  location              (nullable)
+  start_date            (date)
+  end_date              (date, nullable)
+  is_current            (boolean, default false)
+  description           (nullable)
+  created_at
+  updated_at
+
+
+educations
+----------
+  (One-to-many with seeker_profiles)
+
+  id
+  seeker_profile_id     (FK -> seeker_profiles.id)
+  degree                (e.g. "BSc", "MBA")
+  institution
+  field_of_study        (nullable)
+  start_year            (year)
+  end_year              (year, nullable)
+  created_at
+  updated_at
+
+
+----------------------------------------------------------------
+  JOBS
+----------------------------------------------------------------
+
+job_categories
+--------------
+  id
+  name                  (e.g. "Engineering", "Design", "Marketing")
+  slug
+  icon                  (nullable, SVG path or icon name)
+  created_at
+  updated_at
+
+
+job_listings
+------------
+  id
+  employer_profile_id   (FK -> employer_profiles.id)
+  title
+  slug                  (unique, URL-friendly)
+  description           (full job description, rich text)
+  requirements          (nullable)
+  benefits              (nullable)
+  category              (FK -> job_categories.id OR string)
+  type                  (enum: full-time | part-time | contract | freelance | remote)
+  location
+  salary_min            (integer, nullable)
+  salary_max            (integer, nullable)
+  salary_currency       (default: GBP)
+  experience_level      (enum: junior | mid | senior | lead | director)
+  status                (enum: draft | active | paused | closed | expired)
+  is_featured           (boolean, default false)
+  application_deadline  (date, nullable)
+  views_count           (integer, default 0)
+  created_at
+  updated_at
+
+
+job_applications
+----------------
+  id
+  job_listing_id        (FK -> job_listings.id)
+  seeker_profile_id     (FK -> seeker_profiles.id)
+  cover_letter          (text, nullable)
+  status                (enum: pending | reviewed | shortlisted | rejected | hired)
+  employer_note         (text, nullable — internal note by employer)
+  applied_at            (timestamp)
+  created_at
+  updated_at
+
+
+saved_jobs  (PIVOT — bookmarks)
+----------
+  id
+  user_id               (FK -> users.id)
+  job_listing_id        (FK -> job_listings.id)
+  created_at
+
+
+----------------------------------------------------------------
+  BLOG (extends existing posts table)
+----------------------------------------------------------------
+
+posts  (already exists — extend with these columns)
+-----
+  id
+  title
+  slug                  (NEW — unique, URL-friendly)
+  image_url
+  category
+  description
+  content               (NEW — full article HTML/markdown)
+  author_id             (NEW — FK -> users.id, nullable)
+  status                (NEW — enum: draft | published)
+  published_at          (NEW — timestamp, nullable)
+  created_at
+  updated_at
+
+
+----------------------------------------------------------------
+  MESSAGING (future chat system)
+----------------------------------------------------------------
+
+conversations
+-------------
+  id
+  employer_user_id      (FK -> users.id)
+  seeker_user_id        (FK -> users.id)
+  job_listing_id        (nullable, FK -> job_listings.id)
+  created_at
+  updated_at
+
+
+messages
+--------
+  id
+  conversation_id       (FK -> conversations.id)
+  sender_id             (FK -> users.id)
+  body                  (text)
+  read_at               (timestamp, nullable)
+  created_at
+  updated_at
+
+
+----------------------------------------------------------------
+  SUPPORTING TABLES
+----------------------------------------------------------------
+
+notifications
+-------------
+  id
+  user_id               (FK -> users.id)
+  type                  (e.g. "NewApplication", "ApplicationStatusChanged")
+  data                  (JSON — flexible payload)
+  read_at               (timestamp, nullable)
+  created_at
+  updated_at
+
+
+contact_submissions  (from contact form)
+-------------------
+  id
+  name
+  email
+  phone                 (nullable)
+  subject
+  message
+  created_at
+  updated_at
+
+
+salary_insights  (future — for live salary data)
+---------------
+  id
+  title                 (job title)
+  industry
+  location
+  experience_level
+  salary_min            (integer)
+  salary_max            (integer)
+  currency              (default: GBP)
+  source                (e.g. "user_report", "employer_data")
+  reported_at           (date)
+  created_at
+  updated_at
+
+
+================================================================
+  2. CONTROLLER & ROUTE STRUCTURE
+================================================================
+
+app/Http/Controllers/
+│
+├── Auth/
+│   ├── AuthController.php              (exists — extend for full auth)
+│   ├── RegisterController.php          (new — handle registration)
+│   └── ForgotPasswordController.php    (new — password reset flow)
+│
+├── Profile/
+│   ├── ProfileController.php           (exists — extend)
+│   ├── SeekerProfileController.php     (new — CRUD seeker profile)
+│   └── EmployerProfileController.php   (new — CRUD employer profile)
+│
+├── Jobs/
+│   ├── JobListingController.php        (new — public browse, detail)
+│   ├── JobApplicationController.php    (new — apply, track status)
+│   └── SavedJobController.php          (new — bookmark/save jobs)
+│
+├── Dashboard/
+│   ├── SeekerDashboardController.php   (new — seeker home screen)
+│   └── EmployerDashboardController.php (new — employer home + post jobs)
+│
+├── Blog/
+│   └── BlogController.php              (exists — add auth for create)
+│
+└── Admin/
+    └── AdminController.php             (new — manage users/jobs/reports)
+
+
+================================================================
+  3. ROUTES STRUCTURE
+================================================================
+
+Public routes (no auth required):
+----------------------------------
+  GET  /                          home
+  GET  /featured                  featured jobs listing
+  GET  /jobs/{slug}               single job detail page
+  GET  /blog                      blog listing
+  GET  /blog/{id}                 blog detail
+  GET  /candidates                browse candidates
+  GET  /about                     about page
+  GET  /contact                   contact page
+  POST /contact                   submit contact form
+  GET  /pricing                   pricing page
+  GET  /salary-insights           salary page
+  GET  /privacy-policy            privacy policy
+  GET  /terms-of-service          terms
+
+Auth routes:
+------------
+  GET  /login                     login page
+  POST /login                     handle login
+  POST /logout                    handle logout
+  GET  /register                  registration page
+  POST /register                  handle registration
+  GET  /forgot-password           forgot password form
+  POST /forgot-password           send reset link
+  GET  /reset-password/{token}    reset password form
+  POST /reset-password            update password
+  GET  /email/verify              verify email notice
+  GET  /email/verify/{id}/{hash}  verify email link
+
+Profile routes (auth required):
+---------------------------------
+  GET  /create-profile            role selector (exists)
+  POST /create-profile/seeker     save seeker profile (exists — wire to DB)
+  POST /create-profile/employer   save employer profile (exists — wire to DB)
+  GET  /profile/edit              edit current profile
+  PUT  /profile                   update profile
+
+Seeker routes (auth + role:seeker):
+-------------------------------------
+  GET  /dashboard/seeker          seeker dashboard
+  GET  /my-applications           list of applications
+  GET  /saved-jobs                bookmarked jobs
+  POST /jobs/{id}/save            bookmark a job
+  DELETE /jobs/{id}/save          remove bookmark
+  POST /jobs/{id}/apply           submit application
+
+Employer routes (auth + role:employer):
+-----------------------------------------
+  GET  /dashboard/employer        employer dashboard
+  GET  /my-jobs                   list employer's job posts
+  GET  /jobs/create               create job form
+  POST /jobs                      store new job
+  GET  /jobs/{id}/edit            edit job form
+  PUT  /jobs/{id}                 update job
+  DELETE /jobs/{id}               delete job
+  GET  /jobs/{id}/applications    view applicants for a job
+  PATCH /applications/{id}        update application status
+
+Admin routes (auth + role:admin):
+-----------------------------------
+  GET  /admin                     admin dashboard
+  GET  /admin/users               manage users
+  GET  /admin/jobs                manage all jobs
+  GET  /admin/reports             platform reports
+
+
+================================================================
+  4. MIDDLEWARE & AUTH GUARDS
+================================================================
+
+Middleware to create:
+  - auth            Laravel built-in — any logged-in user
+  - verified        Laravel built-in — email-verified users only
+  - role:seeker     Custom — redirect if user is not a seeker
+  - role:employer   Custom — redirect if user is not an employer
+  - role:admin      Custom — redirect if user is not an admin
+
+Route guard examples:
+  // Seeker-only
+  Route::middleware(['auth', 'verified', 'role:seeker'])->group(function () {
+      Route::get('/dashboard/seeker', [...]);
+      Route::get('/my-applications', [...]);
+  });
+
+  // Employer-only
+  Route::middleware(['auth', 'verified', 'role:employer'])->group(function () {
+      Route::get('/dashboard/employer', [...]);
+      Route::get('/jobs/create', [...]);
+  });
+
+  // Admin-only
+  Route::middleware(['auth', 'role:admin'])->group(function () {
+      Route::prefix('admin')->group(function () { ... });
+  });
+
+
+================================================================
+  5. MODELS & RELATIONSHIPS
+================================================================
+
+User
+  hasOne  SeekerProfile
+  hasOne  EmployerProfile
+  hasMany JobApplication (through SeekerProfile)
+  hasMany SavedJob
+  hasMany Message (as sender)
+  hasMany Notification
+
+SeekerProfile
+  belongsTo  User
+  belongsToMany Skill (via seeker_skills)
+  hasMany WorkExperience
+  hasMany Education
+  hasMany JobApplication
+
+EmployerProfile
+  belongsTo User
+  hasMany JobListing
+
+JobListing
+  belongsTo EmployerProfile
+  hasMany JobApplication
+  belongsToMany User (saved, via saved_jobs)
+
+JobApplication
+  belongsTo JobListing
+  belongsTo SeekerProfile
+
+Conversation
+  belongsTo User (employer)
+  belongsTo User (seeker)
+  hasMany Message
+  belongsTo JobListing (optional)
+
+Message
+  belongsTo Conversation
+  belongsTo User (sender)
+
+
+================================================================
+  6. FEATURE IMPLEMENTATION ORDER
+================================================================
+
+PHASE 1 — Authentication (CRITICAL - build first)
+  [ ] Register page (role selection at signup)
+  [ ] Login / Logout
+  [ ] Email verification
+  [ ] Password reset flow
+  [ ] Remember me
+  [ ] Role middleware
+
+PHASE 2 — Profiles (CRITICAL)
+  [ ] Wire existing Create Profile form to database
+  [ ] Seeker profile: save skills, work experience, education
+  [ ] Employer profile: save company info
+  [ ] Profile edit pages
+  [ ] Avatar/logo upload to storage
+
+PHASE 3 — Job Listings (HIGH)
+  [ ] Employer: create, edit, delete job posts
+  [ ] Job detail page with full description
+  [ ] Job apply button (for seekers)
+  [ ] Job search and filter (wire Featured page to real DB)
+  [ ] Job status management (draft/active/closed)
+
+PHASE 4 — Applications (HIGH)
+  [ ] Seeker: apply to job with optional cover letter
+  [ ] Seeker: view all applications + status
+  [ ] Employer: view applications for each job
+  [ ] Employer: update application status (shortlist/reject/hire)
+
+PHASE 5 — Dashboards (HIGH)
+  [ ] Seeker dashboard (applications, saved jobs, profile completeness)
+  [ ] Employer dashboard (job performance, applicant count, quick post)
+
+PHASE 6 — Saved Jobs / Bookmarks (MEDIUM)
+  [ ] Seeker: save/unsave a job listing
+  [ ] Seeker: view saved jobs page
+
+PHASE 7 — Messaging / Chat (MEDIUM)
+  [ ] "Send Message" button on candidate cards → start conversation
+  [ ] Conversation list
+  [ ] Real-time or polling-based message thread
+  [ ] Unread indicator
+
+PHASE 8 — Notifications (MEDIUM)
+  [ ] In-app notification bell
+  [ ] Notify seeker: application status changed
+  [ ] Notify employer: new application received
+  [ ] Email notifications (queue-based)
+
+PHASE 9 — Admin Panel (MEDIUM)
+  [ ] User management (activate/deactivate/change role)
+  [ ] Job listing moderation (approve/remove)
+  [ ] Platform statistics dashboard
+
+PHASE 10 — Blog (LOW)
+  [ ] Auth-gated blog creation (replace current open form)
+  [ ] Real author linked to user account
+  [ ] Published/draft status
+  [ ] Admin can manage all posts
+
+PHASE 11 — Live Data Integration (FUTURE)
+  [ ] Salary insights from real employer/seeker reports
+  [ ] Featured jobs from real job_listings table
+  [ ] Candidate search from real seeker_profiles
+
+
+================================================================
+  7. KEY TECHNICAL DECISIONS
+================================================================
+
+Authentication:
+  Option A: Laravel Breeze  — lightweight, recommended for this project
+  Option B: Laravel Fortify — headless, more control
+  Option C: Custom          — full manual control (more code)
+
+  RECOMMENDATION: Laravel Breeze (customise the views to match PostPulse UI)
+
+File Storage:
+  - Avatars, logos, CVs → stored in storage/app/private/
+  - Served via signed URLs (not publicly accessible by default)
+  - Production: swap to S3-compatible storage (AWS, Cloudflare R2)
+
+Queue / Jobs:
+  - Email notifications → queued (database driver for now, Redis later)
+  - CV processing, image resizing → queued jobs
+
+Search:
+  - Basic: Laravel Scout with database driver (no extra dependency)
+  - Production: Laravel Scout + Algolia or Meilisearch
+
+Payments (for employer plans):
+  - Laravel Cashier + Stripe
+  - Subscription model: free | employer_pro | enterprise
+
+
+================================================================
+  8. FOLDER STRUCTURE (after backend implementation)
+================================================================
+
+app/
+├── Http/
+│   ├── Controllers/
+│   │   ├── Auth/
+│   │   ├── Profile/
+│   │   ├── Jobs/
+│   │   ├── Dashboard/
+│   │   ├── Blog/
+│   │   └── Admin/
+│   ├── Middleware/
+│   │   ├── EnsureRole.php
+│   │   └── EnsureProfileComplete.php
+│   └── Requests/
+│       ├── StoreJobListingRequest.php
+│       ├── StoreSeekerProfileRequest.php
+│       └── StoreEmployerProfileRequest.php
+├── Models/
+│   ├── User.php
+│   ├── SeekerProfile.php
+│   ├── EmployerProfile.php
+│   ├── JobListing.php
+│   ├── JobApplication.php
+│   ├── SavedJob.php
+│   ├── Skill.php
+│   ├── WorkExperience.php
+│   ├── Education.php
+│   ├── Conversation.php
+│   ├── Message.php
+│   └── Post.php
+├── Notifications/
+│   ├── NewApplicationNotification.php
+│   └── ApplicationStatusChangedNotification.php
+└── Policies/
+    ├── JobListingPolicy.php
+    └── JobApplicationPolicy.php
+
+database/
+├── migrations/
+│   ├── (existing migrations)
+│   ├── add_role_to_users_table.php
+│   ├── create_seeker_profiles_table.php
+│   ├── create_employer_profiles_table.php
+│   ├── create_skills_table.php
+│   ├── create_seeker_skills_table.php
+│   ├── create_work_experiences_table.php
+│   ├── create_educations_table.php
+│   ├── create_job_listings_table.php
+│   ├── create_job_applications_table.php
+│   ├── create_saved_jobs_table.php
+│   ├── create_conversations_table.php
+│   ├── create_messages_table.php
+│   └── create_contact_submissions_table.php
+└── seeders/
+    ├── DatabaseSeeder.php
+    ├── UserSeeder.php
+    ├── JobListingSeeder.php
+    └── SkillSeeder.php
+
+
+================================================================
+  END OF DOCUMENT
+  PostPulse Backend Architecture v1.0
+================================================================

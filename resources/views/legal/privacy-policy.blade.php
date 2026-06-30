@@ -348,7 +348,6 @@
                         <li>For significant changes, request fresh consent where required by law</li>
                     </ul>
                     <p>We encourage you to review this policy periodically. Continued use of PostPulse after changes become effective constitutes acceptance of the revised policy.</p>
-                    <p>We encourage you to review this policy periodically. Continued use of PostPulse after changes become effective constitutes acceptance of the revised policy.</p>
                 </div>
 
                 {{-- SECTION 12 --}}
